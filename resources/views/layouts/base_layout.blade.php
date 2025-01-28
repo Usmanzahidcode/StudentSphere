@@ -27,7 +27,7 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('homepage') }}">
             <img src="{{asset('assets/images/logo.png')}}" class="img-fluid logo-image">
 
             <div class="d-flex flex-column">
@@ -44,35 +44,45 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav align-items-center ms-lg-5">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Homepage</a>
+                    <a class="nav-link active" href="{{ route('homepage') }}">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Gotto</a>
+                    <a class="nav-link" href="about.html">Opportunities</a>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                       data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
 
                     <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                        <li><a class="dropdown-item" href="job-listings.html">Job Listings</a></li>
-
-                        <li><a class="dropdown-item" href="job-details.html">Job Details</a></li>
+                        <li><a class="dropdown-item" href="job-listings.html">My Projects</a></li>
+                        {{--TODO: Yet to be decided--}}
+                        <li><a class="dropdown-item" href="job-details.html">My opportunities</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-
-                <li class="nav-item ms-lg-auto">
-                    <a class="nav-link" href="#">Register</a>
+                    <a class="nav-link" href="contact.html">Forum</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link custom-btn btn" href="#">Login</a>
+                    <a class="nav-link" href="contact.html">Account</a>
                 </li>
+
+                @if(!Auth::check())
+                    <li class="nav-item ms-lg-auto">
+                        <a class="nav-link" href="{{ route('register.form') }}">Register</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link custom-btn btn" href="{{ route('login.form') }}">Login</a>
+                    </li>
+                @else
+                    <li class="nav-item ms-lg-auto">
+                        <a class="nav-link custom-btn btn" href="{{ route('logout.submit') }}">Logout</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
@@ -83,134 +93,19 @@
 </main>
 
 <footer class="site-footer">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-4 col-md-6 col-12 mb-3">
-                <div class="d-flex align-items-center mb-4">
-                    <img src="{{asset('assets/images/logo.png')}}" class="img-fluid logo-image">
-
-                    <div class="d-flex flex-column">
-                        <strong class="logo-text">Gotto</strong>
-                        <small class="logo-slogan">Online Job Portal</small>
-                    </div>
-                </div>
-
-                <p class="mb-2">
-                    <i class="custom-icon bi-globe me-1"></i>
-
-                    <a href="#" class="site-footer-link">
-                        www.jobbportal.com
-                    </a>
-                </p>
-
-                <p class="mb-2">
-                    <i class="custom-icon bi-telephone me-1"></i>
-
-                    <a href="tel: 305-240-9671" class="site-footer-link">
-                        305-240-9671
-                    </a>
-                </p>
-
-                <p>
-                    <i class="custom-icon bi-envelope me-1"></i>
-
-                    <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                        info@jobportal.co
-                    </a>
-                </p>
-
-            </div>
-
-            <div class="col-lg-2 col-md-3 col-6 ms-lg-auto">
-                <h6 class="site-footer-title">Company</h6>
-
-                <ul class="footer-menu">
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">About</a></li>
-
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">Blog</a></li>
-
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">Jobs</a></li>
-
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-2 col-md-3 col-6">
-                <h6 class="site-footer-title">Resources</h6>
-
-                <ul class="footer-menu">
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">Guide</a></li>
-
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">How it works</a></li>
-
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">Salary Tool</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 col-md-8 col-12 mt-3 mt-lg-0">
-                <h6 class="site-footer-title">Newsletter</h6>
-
-                <form class="custom-form newsletter-form" action="#" method="post" role="form">
-                    <h6 class="site-footer-title">Get notified jobs news</h6>
-
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi-person"></i></span>
-
-                        <input type="text" name="newsletter-name" id="newsletter-name" class="form-control"
-                               placeholder="yourname@gmail.com" required>
-
-                        <button type="submit" class="form-control">
-                            <i class="bi-send"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-
     <div class="site-footer-bottom">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-4 col-12 d-flex align-items-center">
-                    <p class="copyright-text">Copyright © Gotto Job 2048</p>
-
-                    <ul class="footer-menu d-flex">
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Privacy Policy</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Terms</a></li>
-                    </ul>
+                    <p class="copyright-text">Copyright © StudentSphere 2048</p>
                 </div>
 
-                <div class="col-lg-5 col-12 mt-2 mt-lg-0">
-                    <ul class="social-icon">
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-twitter"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-facebook"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-linkedin"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-instagram"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-youtube"></a>
-                        </li>
-                    </ul>
+                <div class="col-lg-5 col-12 mt-2 mt-lg-0  d-flex align-items-center">
+                    <p class="text-center">Made with ❤️ by team Wajahat</p>
                 </div>
 
                 <div class="col-lg-3 col-12 mt-2 d-flex align-items-center mt-lg-0">
-                    <p>Design: <a class="sponsored-link" rel="sponsored" href="https://www.tooplate.com"
-                                  target="_blank">Tooplate</a></p>
+                    <p><strong>Team: </strong><span>Wajahat, Usman</span></p>
                 </div>
 
                 <a class="back-top-icon bi-arrow-up smoothscroll d-flex justify-content-center align-items-center"

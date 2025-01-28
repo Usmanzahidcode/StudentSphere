@@ -22,7 +22,7 @@
                             <div class="col-xl-6 d-none d-xl-block">
                                 <img
                                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
-                                    alt="Sample photo" class="img-fluid h-100"
+                                    alt="Students collaborating" class="img-fluid h-100 w-auto"
                                     style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"/>
                             </div>
                             <div class="col-xl-6">
@@ -123,10 +123,6 @@
                                                             Female
                                                         </option>
                                                         <option
-                                                            value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>
-                                                            Other
-                                                        </option>
-                                                        <option
                                                             value="rather_not_say" {{ old('gender') == 'rather_not_say' ? 'selected' : '' }}>
                                                             Rather not say
                                                         </option>
@@ -212,24 +208,25 @@
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="educational_background.year_of_study">Year of
-                                                Study</label>
-                                            <input type="text" id="educational_background.year_of_study"
-                                                   name="educational_background[year_of_study]"
-                                                   class="form-control form-control-lg @error('educational_background.year_of_study') is-invalid @enderror"
-                                                   value="{{ old('educational_background.year_of_study') }}"
-                                                   placeholder="e.g., 2nd Year"/>
-                                            @error('educational_background.year_of_study')
+                                            <label class="form-label" for="educational_background.date_of_completion">Date
+                                                of Completion</label>
+                                            <input type="date" id="educational_background.date_of_completion"
+                                                   name="educational_background[date_of_completion]"
+                                                   class="form-control form-control-lg @error('educational_background.date_of_completion') is-invalid @enderror"
+                                                   value="{{ old('educational_background.date_of_completion') }}"
+                                                   placeholder="e.g., 2025-06-30"/>
+                                            @error('educational_background.date_of_completion')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
 
+
                                         <div class="d-flex justify-content-end pt-3">
-                                            <button type="reset" data-mdb-button-init data-mdb-ripple-init
-                                                    class="btn btn-light btn-lg">Reset All
+                                            <button type="reset"
+                                                    class="btn btn-light btn-lg">Reset
                                             </button>
-                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                                    class="btn btn-warning btn-lg ms-2">Submit Form
+                                            <button type="submit"
+                                                    class="btn btn-warning btn-lg ms-2">Register
                                             </button>
                                         </div>
 
@@ -242,32 +239,6 @@
             </div>
         </div>
     </section>
-    {{--    <div class="registration-page">--}}
-    {{--        <div class="container">--}}
-    {{--            <div class="w-50 mx-auto my-5">--}}
-    {{--                <h3>Registration</h3>--}}
-
-    {{--                <div class="form-wrapper mt-5">--}}
-    {{--                    <div class="mb-3">--}}
-    {{--                        <label for="exampleFormControlInput1" class="form-label text-white">Email address</label>--}}
-    {{--                        <input type="email" class="form-control" id="exampleFormControlInput1"--}}
-    {{--                               placeholder="name@example.com">--}}
-    {{--                    </div>--}}
-
-    {{--                    <div>--}}
-    {{--                        <label for="inputPassword5" class="form-label text-white">Password</label>--}}
-    {{--                        <input type="password" id="inputPassword5" class="form-control"--}}
-    {{--                               aria-describedby="passwordHelpBlock">--}}
-    {{--                        <div id="passwordHelpBlock" class="form-text text-white-50">--}}
-    {{--                            Your password must be 8-20 characters long, contain letters and numbers, and must not--}}
-    {{--                            contain--}}
-    {{--                            spaces, special characters, or emoji.--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
 @endsection
 
 @push('scripts')
