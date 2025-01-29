@@ -17,42 +17,32 @@
 
                 <div class="col-lg-6 col-12 mb-5 mb-lg-0">
                     <div class="hero-section-text mt-5">
-                        <h6 class="text-white">Are you looking for your dream job?</h6>
+                        <h6 class="text-white">Are you looking for like-minded people?</h6>
 
-                        <h1 class="hero-title text-white mt-4 mb-4">Online Platform. <br> Best Job portal</h1>
+                        <h1 class="hero-title text-white mt-4 mb-4">StudentSphere. <br> Collaboration done right.</h1>
 
-                        <a href="#categories-section" class="custom-btn custom-border-btn btn">Browse Categories</a>
+                        <a href="{{ route('register.form') }}" class="custom-btn custom-border-btn btn">Start you Journey</a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-12">
                     <form class="custom-form hero-form" action="#" method="get" role="form">
-                        <h3 class="text-white mb-3">Search your dream job</h3>
+                        <h3 class="text-white mb-3">Search for collaboration opportunities.</h3>
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12">
+                            <div class="col-lg-12 col-md-12 col-12">
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i
-                                            class="bi-person custom-icon"></i></span>
+                                            class="bi-book custom-icon"></i></span>
 
-                                    <input type="text" name="job-title" id="job-title" class="form-control"
-                                           placeholder="Job Title" required>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon2"><i
-                                            class="bi-geo-alt custom-icon"></i></span>
-
-                                    <input type="text" name="job-location" id="job-location" class="form-control"
-                                           placeholder="Location" required>
+                                    <input type="text" name="job-title" id="React application" class="form-control"
+                                           placeholder="A robust medical application with react and SpringBoot." required>
                                 </div>
                             </div>
 
                             <div class="col-lg-12 col-12">
                                 <button type="submit" class="form-control">
-                                    Find a job
+                                    Find an opportunity
                                 </button>
                             </div>
 
@@ -61,11 +51,11 @@
                                     <span class="text-white mb-lg-0 mb-md-0 me-2">Popular keywords:</span>
 
                                     <div>
-                                        <a href="../job-listings.html" class="badge">Web design</a>
+                                        <a class="badge">React Application</a>
 
-                                        <a href="../job-listings.html" class="badge">Marketing</a>
+                                        <a class="badge">Laravel application</a>
 
-                                        <a href="../job-listings.html" class="badge">Customer support</a>
+                                        <a class="badge">Machine learning</a>
                                     </div>
                                 </div>
                             </div>
