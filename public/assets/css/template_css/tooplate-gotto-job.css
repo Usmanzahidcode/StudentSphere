@@ -1,10 +1,11 @@
 :root {
     --white-color: #ffffff;
-    --primary-color: #5d52ba;
-    --secondary-color: #0dcaf0;
-    --section-bg-color: #f0f8ff;
-    --custom-btn-bg-color: #f65129;
-    --social-icon-link-bg-color: #7f73eb;
+        --primary-color: #364fc7;
+        --secondary-color: #5d52ba;
+        --custom-btn-bg-color: #f65129;
+        --social-icon-link-bg-color: #e03131;
+
+
     --dark-color: #000000;
     --p-color: #717275;
     --border-color: #e9eaeb;
@@ -1267,7 +1268,7 @@ nav[aria-label="breadcrumb"] {
   SITE FOOTER
 -----------------------------------------*/
 .site-footer {
-    /*  Removed for footer customization*/
+    /*  todo: Removed for footer customization*/
     /*padding-top: 100px;*/
     padding-bottom: 0;
 }
@@ -1278,7 +1279,7 @@ nav[aria-label="breadcrumb"] {
 
 .site-footer-bottom {
     background: var(--primary-color);
-    /*  Removed for footer customization*/
+    /* todo:  Removed for footer customization*/
     /*margin-top: 100px;*/
     padding-top: 20px;
     padding-bottom: 20px;

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Project\OpportunityController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.homepage')->name('homepage');
@@ -10,7 +11,9 @@ Route::group(['middleware' => 'authenticated'], function () {
     // Pages
 
     // Opportunity
-
+    Route::group(['prefix' => 'opportunities'], function (){
+        Route::get('/', [OpportunityController::class, 'index']);
+    });
     // Auth
     Route::get('/logout', [AuthController::class, 'submitLogout'])->name('logout.submit');
 });
