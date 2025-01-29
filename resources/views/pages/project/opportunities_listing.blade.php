@@ -14,8 +14,15 @@
 
 @section('content')
     <div class="container my-5 min-vh-100">
-        <h3>Opportunities</h3>
-        <p>Look and select the opportunities that resonate with you interests and submit application.</p>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h3>Opportunities</h3>
+                <p>Look and select the opportunities that resonate with you interests and submit application.</p>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <a href="#" class="bi-plus-circle-fill custom-icon fs-5 me-3"> Add an opportunity</a>
+            </div>
+        </div>
         <div class="py-2 d-flex flex-column gap-5">
             <div class="card opportunity-card">
                 <div class="card-body">
