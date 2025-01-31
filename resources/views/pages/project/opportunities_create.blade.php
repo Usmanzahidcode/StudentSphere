@@ -272,8 +272,7 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log(data.response);
-                        tinyMCE.get('opportunity-description-editor').setContent(data);
-                        mainTextarea.value += `\nAI: ${data.response}`; // Use value to update textarea content
+                        tinymce.activeEditor.setContent(data.data.response)
                         document.getElementById('ai-modal').style.display = 'none';
                     })
                     .catch(error => console.error('Error was:', error));
@@ -293,7 +292,6 @@
     <script>
         tinymce.init({
             selector: '#opportunity-description-editor',
-            name: "opportunity-description-editor",
             plugins: [
                 'codesample', 'link', 'lists', 'table', 'visualblocks', 'checklist'
             ],
