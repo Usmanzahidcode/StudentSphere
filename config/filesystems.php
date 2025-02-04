@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -56,7 +56,40 @@ return [
             'throw' => false,
         ],
 
+        // Disk for storing documents
+        'documents' => [
+            'driver' => 'local',
+            'root' => storage_path('app/documents'),
+            'visibility' => 'private',
+            'url' => env('APP_URL') . '/storage/documents',
+        ],
+
+        // Disk for storing images
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/images'),
+            'visibility' => 'public',
+            'url' => env('APP_URL') . '/storage/images',
+        ],
+
+        // Disk for storing videos
+        'videos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/videos'),
+            'visibility' => 'private',
+            'url' => env('APP_URL') . '/storage/videos',
+        ],
+
+        // Disk for storing audio files
+        'audio' => [
+            'driver' => 'local',
+            'root' => storage_path('app/audio'),
+            'visibility' => 'private',
+            'url' => env('APP_URL') . '/storage/audio',
+        ],
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------

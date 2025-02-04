@@ -20,7 +20,7 @@
                 <p>Look and select the opportunities that resonate with you interests and submit application.</p>
             </div>
             <div class="d-flex flex-column justify-content-center">
-                <a href="#" class="bi-plus-circle-fill custom-icon fs-5 me-3"> Add an opportunity</a>
+                <a href="{{ route('opportunities.create') }}" class="bi-plus-circle-fill custom-icon fs-5 me-3"> Add an opportunity</a>
             </div>
         </div>
         <div class="py-2 d-flex flex-column gap-5">

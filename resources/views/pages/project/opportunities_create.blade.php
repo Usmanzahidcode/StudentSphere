@@ -83,6 +83,11 @@
 
 @section('content')
     <div class="container py-5">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <h3 class="fw-bold">Create Opportunity</h3>
         <p class="text-muted">This is your entry point to collaboration. <span
                 class="p-2 rounded-pill bg-dark text-white">Guidelines: </span> Provide a clear and detailed opportunity
@@ -257,7 +262,6 @@
 
         document.getElementById('submit-query-btn').addEventListener('click', function () {
             const query = document.getElementById('ai-query-input').value;
-            const mainTextarea = document.getElementById('opportunity-description-editor'); // Use the correct ID
 
             if (query.trim() !== "") {
                 // Construct the URL dynamically using Blade syntax

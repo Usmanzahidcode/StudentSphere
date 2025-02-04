@@ -13,7 +13,7 @@ Route::group(['middleware' => 'authenticated'], function () {
     // Opportunity
     Route::group(['prefix' => 'opportunities'], function (){
         Route::get('/', [OpportunityController::class, 'index']);
-        Route::get('/create', [OpportunityController::class, 'create']);
+        Route::get('/create', [OpportunityController::class, 'create'])->name('opportunities.create');
         Route::post('/', [OpportunityController::class, 'store'])->name('opportunities.store');
     });
     // Auth

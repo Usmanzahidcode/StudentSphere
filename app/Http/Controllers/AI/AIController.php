@@ -20,7 +20,7 @@ class AIController extends Controller {
         $payload = ["contents" => $contents];
         $apiResponse = $this->sendRequest($payload);
 
-        $aiResponse = $apiResponse['candidates'][0]['content']['parts'][0]['text'] ?? '<p>Failed to generate response. Kindly contact the devs for any issue!</p>';
+        $aiResponse = $apiResponse['candidates'][0]['content']['parts'][0]['text'] ?? '<p>asd Failed to generate response Kindly contact <strong>(developerusman@yahoo.com) asd </strong> the devs <i>alsjd hals</i> for any issue!</p>';
 
         return response()->json([
             "success" => isset($apiResponse['candidates']),
