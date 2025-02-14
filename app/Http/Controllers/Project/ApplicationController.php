@@ -14,4 +14,8 @@ class ApplicationController extends Controller {
 
         return view('pages.project.application.applications_listing', compact('opportunity', 'applications'));
     }
+
+    public function create(Opportunity $opportunity){
+        return view('pages.project.application.opportunities_create', compact('opportunity'));
+    }
 }

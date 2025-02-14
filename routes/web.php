@@ -25,7 +25,10 @@ Route::group(['middleware' => 'authenticated'], function () {
         // Application routes
         Route::group(['prefix' => '{opportunity}/applications'], function () {
             Route::get('/', [ApplicationController::class, 'index'])->name('applications.index');
+            Route::get('/create', [ApplicationController::class, 'create'])->name('applications.store');
             Route::post('/', [ApplicationController::class, 'store'])->name('applications.store');
+            Route::post('/update', [ApplicationController::class, 'edit'])->name('applications.store');
+            Route::match(['PUT', 'PATCH'], '/{application}', [ApplicationController::class, 'update'])->name('applications.store');
             Route::get('/{application}', [ApplicationController::class, 'show'])->name('applications.show');
             Route::delete('/{application}', [ApplicationController::class, 'destroy'])->name('applications.delete');
         });
