@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\Project\ApplicationController;
 use App\Http\Controllers\Project\OpportunityController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,16 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::get('/{opportunity}/edit', [OpportunityController::class, 'edit'])->name('opportunities.edit');
         Route::match(['PUT', 'PATCH'], '/{opportunity}', [OpportunityController::class, 'update'])->name('opportunities.update');
         Route::delete('/{opportunity}', [OpportunityController::class, 'destroy'])->name('opportunities.delete');
-    });
 
-    Route::resource('test', OpportunityController::class);
+        // Application routes
+        Route::group(['prefix' => '{opportunity}/applications'], function () {
+            Route::get('/', [ApplicationController::class, 'index'])->name('applications.index');
+            Route::post('/', [ApplicationController::class, 'store'])->name('applications.store');
+            Route::get('/{application}', [ApplicationController::class, 'show'])->name('applications.show');
+            Route::delete('/{application}', [ApplicationController::class, 'destroy'])->name('applications.delete');
+        });
+
+    });
 
     // Files
     Route::group(['prefix' => 'files'], function () {

@@ -41,15 +41,56 @@
                             {{ Str::limit(strip_tags($opportunity->description), 500) }}
                         </p>
 
-                        <a class="custom-btn btn" href="{{ route('opportunities.show', ['opportunity' => $opportunity->id]) }}">
+                        <a class="custom-btn btn"
+                           href="{{ route('opportunities.show', ['opportunity' => $opportunity->id]) }}">
                             Interested
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
+
+        {{-- Pagination --}}
         <div class="my-5">
-            {{ $opportunities->links() }}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <ul class="pagination">
+                        {{-- Previous Page Link --}}
+                        @if ($opportunities->onFirstPage())
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $opportunities->previousPageUrl() }}">Previous</a>
+                            </li>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @foreach ($opportunities->links()->elements as $element)
+                            @if (is_array($element))
+                                @foreach ($element as $page => $url)
+                                    <li class="page-item {{ $opportunities->currentPage() == $page ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+                            @endif
+                        @endforeach
+
+                        {{-- Next Page Link --}}
+                        @if ($opportunities->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $opportunities->nextPageUrl() }}">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        @endif
+                    </ul>
+
+                </ul>
+            </nav>
         </div>
     </div>
 @endsection

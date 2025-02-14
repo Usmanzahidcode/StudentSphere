@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class OpportunityController extends Controller {
     public function index() {
         $opportunities = Opportunity::orderByDesc('created_at')
-            ->simplePaginate(10);
+            ->paginate(5);
 
         return view('pages.project.opportunities_listing', compact('opportunities'));
     }
