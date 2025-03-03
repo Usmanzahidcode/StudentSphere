@@ -2,14 +2,17 @@
 
 namespace App\Models\Project;
 
+use App\Models\File;
 use App\Models\Opportunity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Application extends Model {
     protected $fillable = [
         'user_id',
+        'opportunity_id',
         'body',
     ];
 
@@ -20,5 +23,9 @@ class Application extends Model {
 
     public function opportunity(): BelongsTo {
         return $this->belongsTo(Opportunity::class);
+    }
+
+    public function file(): MorphOne {
+        return $this->morphOne(File::class, 'file_origin');
     }
 }

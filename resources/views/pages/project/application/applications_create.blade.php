@@ -27,25 +27,25 @@
             </p>
 
 
-            <form action="{{ route('opportunities.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('applications.store', ['opportunity' => $opportunity->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3 position-relative">
-                <label for="opportunity-description-editor" class="form-label">Application body</label>
-                <textarea class="form-control @error('description') is-invalid @enderror"
-                          id="opportunity-description-editor" name="description" placeholder="The floor is yours!">
-                    {{ old('description') }}
+                <label for="application-body-editor" class="form-label">Application body</label>
+                <textarea class="form-control @error('body') is-invalid @enderror"
+                          id="application-body-editor" name="body" placeholder="The floor is yours!">
+                    {{ old('body') }}
                 </textarea>
-                @error('description')
+                @error('body')
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
 
             <!-- File Upload -->
             <div class="mb-3">
-                <label for="opportunity-file" class="form-label">Attach a file (optional):</label>
+                <label for="application-file" class="form-label">Attach a file (optional):</label>
                 <input class="form-control @error('file') is-invalid @enderror"
-                       type="file" id="opportunity-file" name="file">
+                       type="file" id="application-file" name="file">
                 @error('file')
                 <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
@@ -75,6 +75,7 @@
 
             if (query.trim() !== "") {
                 // Construct the URL dynamically using Blade syntax
+                // TODO: Either remove the AI code from this page or change t he route to the generator of application bogy
                 const url = `{{ route('ss-ai.opportunity-description') }}?query=${encodeURIComponent(query)}`;
 
                 fetch(url, {
@@ -105,7 +106,7 @@
 
     <script>
         tinymce.init({
-            selector: '#opportunity-description-editor',
+            selector: '#application-body-editor',
             plugins: [
                 'codesample', 'link', 'lists', 'table', 'visualblocks', 'checklist'
             ],
