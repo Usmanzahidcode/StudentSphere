@@ -20,7 +20,7 @@
         @foreach($applications as $application)
             <p>Application by: {{ $application->user->first_name }} {{ $application->user->last_name }}</p>
             <div>
-                {{ $application->body }}
+                {!! $application->body !!}
             </div>
         @endforeach
     </div>
