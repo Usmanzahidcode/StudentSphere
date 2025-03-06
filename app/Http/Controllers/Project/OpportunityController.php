@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Project\Opportunity\OpportunityCreateRequest;
 use App\Http\Requests\Project\Opportunity\OpportunityUpdateRequest;
-use App\Models\FileType;
-use App\Models\Opportunity;
+use App\Models\Project\FileType;
+use App\Models\Project\Opportunity;
 use Illuminate\Support\Facades\Storage;
 
 class OpportunityController extends Controller {

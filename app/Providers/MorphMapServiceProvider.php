@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Opportunity;
 use App\Models\Project\Application;
+use App\Models\Project\Opportunity;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 

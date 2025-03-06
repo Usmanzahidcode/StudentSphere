@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Project;
 
-use App\Models\Project\Application;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;

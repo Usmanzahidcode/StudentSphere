@@ -2,9 +2,7 @@
 
 namespace App\Models\Project;
 
-use App\Models\File;
-use App\Models\Opportunity;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
