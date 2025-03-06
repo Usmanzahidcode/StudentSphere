@@ -89,7 +89,17 @@
 </nav>
 
 <main>
+    <div class="container py-5 min-vh-100">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+    @endif
+
+    {{-- The content from teh child page! --}}
     @yield('content')
+
+    </div>
 </main>
 
 <footer class="site-footer">

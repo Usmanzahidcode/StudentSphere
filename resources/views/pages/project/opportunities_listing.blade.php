@@ -13,7 +13,6 @@
 @endsection
 
 @section('content')
-    <div class="container my-5 min-vh-100">
         <div class="d-flex justify-content-between">
             <div>
                 <h3>Opportunities</h3>
@@ -92,7 +91,6 @@
                 </ul>
             </nav>
         </div>
-    </div>
 @endsection
 
 @push('scripts')

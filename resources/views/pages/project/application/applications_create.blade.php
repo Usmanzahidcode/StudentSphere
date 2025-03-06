@@ -13,12 +13,6 @@
 @endsection
 
 @section('content')
-    <div class="container py-5">
-        @if(session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
             <h3 class="fw-bold">Apply for: <span class="text-success">{{ $opportunity->title }}</span></h3>
             <p class="text-muted">
                 Submit your application to be considered for this opportunity.
@@ -56,7 +50,6 @@
                 <button type="submit" class="btn custom-btn py-2 px-5">Submit</button>
             </div>
         </form>
-    </div>
 @endsection
 
 @push('scripts')

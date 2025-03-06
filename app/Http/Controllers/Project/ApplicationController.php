@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Project\Opportunity\Application\ApplicationCreateRequest;
 use App\Models\FileType;
 use App\Models\Opportunity;
+use App\Models\Project\Application;
 use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller {
@@ -48,5 +49,9 @@ class ApplicationController extends Controller {
 
         // Return success response
         return back()->with('success', 'The Application has been submitted!');
+    }
+
+    public function show(Opportunity $opportunity, Application $application){
+        return view('pages.project.application.applications_details', ['opportunity' => $opportunity, 'application' => $application]);
     }
 }
