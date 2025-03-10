@@ -35,4 +35,8 @@ class ProjectController extends Controller {
     public function show(Project $project) {
         return view('pages.project.project.project_details', ['project' => $project->load(['members', 'opportunity'])]);
     }
+
+    public function abortProject() {}
+
+    public function completeProject() {}
 }

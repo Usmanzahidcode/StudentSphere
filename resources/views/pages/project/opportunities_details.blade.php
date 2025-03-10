@@ -54,7 +54,16 @@
         @endif
 
         <div class="mt-5"></div>
-        <a class="custom-btn mt-5 py-2 px-5" href="{{ route('applications.create', ['opportunity' => $opportunity->id]) }}">Apply</a>
+        @if ($opportunity->status === App\Enums\Project\OpportunityStatus::OPEN)
+            <a class="custom-btn mt-5 py-2 px-5" href="{{ route('applications.create', ['opportunity' => $opportunity->id]) }}">
+                Apply
+            </a>
+        @else
+            <p class="text-danger">This opportunity is closed for newer submissions.</p>
+            <a class="btn btn-primary py-2 px-5 disabled" href="#">
+                Apply
+            </a>
+        @endif
 @endsection
 
 @push('scripts')
