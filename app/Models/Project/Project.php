@@ -18,6 +18,11 @@ class Project extends Model {
         return $this->belongsTo(User::class);
     }
 
+
+    public function opportunity(): BelongsTo {
+        return $this->belongsTo(Opportunity::class);
+    }
+
     public function members(): BelongsToMany {
         return $this->belongsToMany(User::class, 'project_members');
     }
