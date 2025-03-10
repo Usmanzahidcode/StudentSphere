@@ -14,7 +14,24 @@
 @section('content')
     <div class="container py-5">
         <!-- Project Title -->
-        <h1 class="mb-4 fw-bold">{{ $project->opportunity->title }}</h1>
+        <h1 class="fw-bold">{{ $project->opportunity->title }}</h1>
+        @if (auth()->id() === $project->opportunity->user_id)
+            <form action="{{ route('projects.abort', $project) }}" method="post" class="d-inline">
+                @csrf
+                @method('PATCH')
+                <input type="submit" value="Abort Project" class="text-danger border-0 bg-transparent"/>
+            </form>
+
+            <form action="{{ route('projects.complete', $project) }}" method="post" class="d-inline">
+                @csrf
+                @method('PATCH')
+                <input type="submit" value="Complete Project" class="text-success border-0 bg-transparent"/>
+            </form>
+        @endif
+
+
+
+        <div class="mb-4"></div>
 
         <!-- Project Status with Timeline -->
         <div class="mb-4">

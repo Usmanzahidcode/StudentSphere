@@ -48,6 +48,9 @@ Route::group(['middleware' => 'authenticated'], function () {
 
         Route::delete('/{project}/remove-member', [ProjectController::class, 'removeMember'])
             ->name('projects.remove-member');
+
+        Route::patch('/{project}/abort', [ProjectController::class, 'abortProject'])->name('projects.abort');
+        Route::patch('/{project}/complete', [ProjectController::class, 'completeProject'])->name('projects.complete');
     });
 
     // Files

@@ -38,7 +38,7 @@ class ProjectController extends Controller {
     }
 
     public function removeMember(ProjectRemoveMemberRequest $request, Project $project) {
-        if ($project->members()->count() <= 1){
+        if ($project->members()->count() <= 1) {
             return back()->with('error', 'You cannot remove all the members');
         }
         $project->members()->detach($request->user_id);
@@ -46,7 +46,15 @@ class ProjectController extends Controller {
     }
 
 
-    public function abortProject() {}
+    public function abortProject(Project $project) {
+        $project->update(['status' => ProjectStatus::ABORTED]);
 
-    public function completeProject() {}
+        return redirect()->back()->with('success', 'Project has been aborted successfully.');
+    }
+
+    public function completeProject(Project $project) {
+        $project->update(['status' => ProjectStatus::COMPLETED]);
+
+        return redirect()->back()->with('success', 'Project has been completed successfully.');
+    }
 }
