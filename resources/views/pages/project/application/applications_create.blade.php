@@ -53,48 +53,6 @@
 @endsection
 
 @push('scripts')
-
-    <script>
-        document.getElementById('floating-btn').addEventListener('click', function () {
-            document.getElementById('ai-modal').style.display = 'block';
-        });
-
-        document.querySelector('.close-btn').addEventListener('click', function () {
-            document.getElementById('ai-modal').style.display = 'none';
-        });
-
-        document.getElementById('submit-query-btn').addEventListener('click', function () {
-            const query = document.getElementById('ai-query-input').value;
-
-            if (query.trim() !== "") {
-                // Construct the URL dynamically using Blade syntax
-                // TODO: Either remove the AI code from this page or change t he route to the generator of application bogy
-                const url = `{{ route('ss-ai.opportunity-description') }}?query=${encodeURIComponent(query)}`;
-
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data.response);
-                        tinymce.activeEditor.setContent(data.data.response)
-                        document.getElementById('ai-modal').style.display = 'none';
-                    })
-                    .catch(error => console.error('Error was:', error));
-            }
-        });
-
-
-        document.getElementById('ai-query-input').addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                document.getElementById('submit-query-btn').click();
-            }
-        });
-    </script>
-
     <script src="{{ asset('assets/javascript/tinymce/tinymce.min.js') }}"></script>
 
     <script>

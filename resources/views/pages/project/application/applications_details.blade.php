@@ -20,6 +20,16 @@
                 <h3 class="card-title">Application Details</h3>
                 <p><strong>Applicant:</strong> {{ $application->user->first_name }} {{ $application->user->last_name }}</p>
                 <p><strong>Submitted on:</strong> {{ $application->created_at->format('d M Y, h:i A') }}</p>
+                @if($application->user_id===auth()->id())
+                    <div class="d-flex gap-3">
+                        <a href="{{ route('applications.edit', ['opportunity' => $opportunity->id, 'application' => $application]) }}">Edit your application</a>
+                        <form action="{{ route('applications.delete', ['opportunity' => $opportunity->id, 'application' => $application]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" class="text-danger border-0 bg-transparent"/>
+                        </form>
+                    </div>
+                @endif
                 <p><strong>Application:</strong></p>
                 <article>
                     {!! $application->body !!}

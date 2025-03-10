@@ -27,7 +27,7 @@ Route::group(['middleware' => 'authenticated'], function () {
             Route::get('/', [ApplicationController::class, 'index'])->name('applications.index');
             Route::get('/create', [ApplicationController::class, 'create'])->name('applications.create');
             Route::post('/', [ApplicationController::class, 'store'])->name('applications.store');
-            Route::post('/edit', [ApplicationController::class, 'edit'])->name('applications.edit');
+            Route::get('/{application}/edit', [ApplicationController::class, 'edit'])->name('applications.edit');
             Route::match(['PUT', 'PATCH'], '/{application}', [ApplicationController::class, 'update'])->name('applications.update');
             Route::get('/{application}', [ApplicationController::class, 'show'])->name('applications.show');
             Route::delete('/{application}', [ApplicationController::class, 'destroy'])->name('applications.delete');
