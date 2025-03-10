@@ -4,6 +4,7 @@ namespace App\Models\Project;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Opportunity extends Model {
@@ -23,5 +24,9 @@ class Opportunity extends Model {
 
     public function applications(): HasMany {
         return $this->hasMany(Application::class);
+    }
+
+    public function project(): HasOne {
+        return $this->hasOne(Project::class);
     }
 }
