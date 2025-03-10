@@ -2,6 +2,7 @@
 
 namespace App\Models\Project;
 
+use App\Enums\Project\ProjectStatus;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +14,12 @@ class Project extends Model {
         'opportunity_id',
         'status',
     ];
+
+    protected function casts(): array {
+        return [
+            'status' => ProjectStatus::class,
+        ];
+    }
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);

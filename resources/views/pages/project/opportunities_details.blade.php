@@ -60,7 +60,7 @@
             </a>
         @else
             <p class="text-danger">This opportunity is closed for newer submissions.</p>
-            <a class="btn btn-primary py-2 px-5 disabled" href="#">
+            <a class="btn btn-primary py-2 px-5 rounded-pill disabled" href="#">
                 Apply
             </a>
         @endif
