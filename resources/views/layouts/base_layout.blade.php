@@ -94,10 +94,10 @@
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
-    @endif
+        @endif
 
-    {{-- The content from teh child page! --}}
-    @yield('content')
+        {{-- The content from teh child page! --}}
+        @yield('content')
 
     </div>
 </main>

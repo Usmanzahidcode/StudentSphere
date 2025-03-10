@@ -96,4 +96,10 @@ class ApplicationController extends Controller {
 
         return redirect()->route('applications.show', ['opportunity' => $opportunity->id, 'application' => $application->id])->with('success', 'Application updated successfully!');
     }
+
+    public function destroy(Opportunity $opportunity, Application $application) {
+        $application->delete();
+        return redirect()->route('opportunities.show', ['opportunity' => $opportunity->id])
+            ->with('success', 'The application was removed from the opportunity.');
+    }
 }
