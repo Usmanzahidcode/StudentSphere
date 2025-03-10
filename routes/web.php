@@ -45,6 +45,9 @@ Route::group(['middleware' => 'authenticated'], function () {
 
         Route::get('/{project}', [ProjectController::class, 'show'])
             ->name('projects.show');
+
+        Route::delete('/{project}/remove-member', [ProjectController::class, 'removeMember'])
+            ->name('projects.remove-member');
     });
 
     // Files

@@ -54,7 +54,7 @@
 
         <!-- View Opportunity Button -->
         <a href="{{ route('opportunities.show', $project->opportunity->id) }}"
-           class="btn btn-primary mb-4 {{ $project->opportunity->status === App\Enums\Project\OpportunityStatus::OPEN ? '' : 'disabled' }}">
+           class="btn btn-primary mb-4">
             View Opportunity Details
         </a>
 
@@ -72,14 +72,69 @@
                                     <strong>{{ $member->first_name }} {{ $member->last_name }}</strong>
                                     <a href="#" class="text-decoration-none text-primary small ms-2">View Profile</a>
                                 </div>
-                                <span class="badge bg-secondary text-white">{{ $member->email }}</span>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-secondary text-white me-3">{{ $member->email }}</span>
+
+                                    <!-- Remove Action (Visible for Author) -->
+                                    {{--TODO: Add the proepr route here--}}
+                                    @if (auth()->id() === $project->opportunity->user_id)
+                                        <form action="{{ route('projects.remove-member', $project) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="user_id" value="{{ $member->id }}">
+                                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                        </form>
+                                    @endif
+
+                                </div>
                             </li>
                         @endforeach
                     </ul>
                 @endif
             </div>
         </div>
+
     </div>
+
+    {{-- Chat --}}
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Project Chat</h5>
+        </div>
+        <div class="card-body" style="max-height: 350px; overflow-y: auto;">
+            @php
+                $messages = [
+                    ['name' => 'Nonu Bhai', 'text' => 'Bawa g Sialkot', 'time' => '12 Jan 2024, 1 AM'],
+                    ['name' => 'Ali Raza', 'text' => 'Koi update hai?', 'time' => '12 Jan 2024, 1:05 AM'],
+                    ['name' => 'Fatima Noor', 'text' => 'Working on the UI changes.', 'time' => '12 Jan 2024, 1:10 AM'],
+                    ['name' => 'Hassan Khan', 'text' => 'Backend almost done!', 'time' => '12 Jan 2024, 1:15 AM'],
+                    ['name' => 'Sara Ahmed', 'text' => 'Need help with database schema.', 'time' => '12 Jan 2024, 1:20 AM'],
+                    ['name' => 'Usman Ali', 'text' => 'Testing phase initiated.', 'time' => '12 Jan 2024, 1:25 AM'],
+                    ['name' => 'Ayesha Tariq', 'text' => 'Found a bug in form validation.', 'time' => '12 Jan 2024, 1:30 AM'],
+                    ['name' => 'Bilal Saeed', 'text' => 'Let’s have a quick meeting.', 'time' => '12 Jan 2024, 1:35 AM'],
+                    ['name' => 'Zain Malik', 'text' => 'Deployment scheduled for tomorrow.', 'time' => '12 Jan 2024, 1:40 AM'],
+                    ['name' => 'Maria Khan', 'text' => 'Great work team! 🎉', 'time' => '12 Jan 2024, 1:45 AM'],
+                ];
+            @endphp
+
+            @foreach ($messages as $message)
+                <div class="mb-3 p-2 rounded bg-light">
+                    <strong class="text-primary">{{ $message['name'] }}:</strong> {{ $message['text'] }}
+                    <small class="text-muted d-block">{{ $message['time'] }}</small>
+                </div>
+            @endforeach
+        </div>
+        <div class="card-footer bg-light">
+            <form action="#" method="POST">
+                @csrf
+                <div class="input-group">
+                    <input type="text" name="message" class="form-control" placeholder="Type a message..." required>
+                    <button class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 @endsection
 
 

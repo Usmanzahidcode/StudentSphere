@@ -6,6 +6,7 @@ use App\Enums\Project\OpportunityStatus;
 use App\Enums\Project\ProjectStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Project\Project\ProjectInitializeRequest;
+use App\Http\Requests\Project\Project\ProjectRemoveMemberRequest;
 use App\Models\Project\Opportunity;
 use App\Models\Project\Project;
 
@@ -35,6 +36,15 @@ class ProjectController extends Controller {
     public function show(Project $project) {
         return view('pages.project.project.project_details', ['project' => $project->load(['members', 'opportunity'])]);
     }
+
+    public function removeMember(ProjectRemoveMemberRequest $request, Project $project) {
+        if ($project->members()->count() <= 1){
+            return back()->with('error', 'You cannot remove all the members');
+        }
+        $project->members()->detach($request->user_id);
+        return back()->with('success', 'Member removed successfully.');
+    }
+
 
     public function abortProject() {}
 
