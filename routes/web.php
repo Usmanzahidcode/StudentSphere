@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\Project\ApplicationController;
 use App\Http\Controllers\Project\OpportunityController;
+use App\Http\Controllers\Project\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.homepage')->name('homepage');
@@ -33,6 +34,17 @@ Route::group(['middleware' => 'authenticated'], function () {
             Route::delete('/{application}', [ApplicationController::class, 'destroy'])->name('applications.delete');
         });
 
+    });
+
+    Route::group(['prefix' => 'projects'], function () {
+        Route::get('/create/{opportunity}', [ProjectController::class, 'create'])
+            ->name('projects.create');
+
+        Route::post('/create/{opportunity}', [ProjectController::class, 'store'])
+            ->name('projects.store');
+
+        Route::get('/{project}', [ProjectController::class, 'show'])
+            ->name('projects.show');
     });
 
     // Files

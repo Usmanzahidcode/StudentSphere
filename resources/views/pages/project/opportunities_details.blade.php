@@ -29,6 +29,7 @@
                     <input type="submit" value="Delete" class="text-danger border-0 bg-transparent"/>
                 </form>
                 <a href="{{ route('applications.index', ['opportunity' => $opportunity->id]) }}">List of Applicants ({{ $opportunity->applications()->count() }})</a>
+                <a href="{{ route('projects.create', ['opportunity' => $opportunity]) }}"><strong><em>Start project</em></strong></a>
             </div>
         @endif
         <div class="dropdown-divider my-5"></div>
