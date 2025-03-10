@@ -1,7 +1,6 @@
 @extends('layouts.base_layout')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/project/opportunity_listing.css') }}">
 @endpush
 
 @section('title')
