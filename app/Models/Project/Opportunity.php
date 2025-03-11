@@ -3,6 +3,7 @@
 namespace App\Models\Project;
 
 use App\Enums\Project\OpportunityStatus;
+use App\Models\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;

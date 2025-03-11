@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Project\Message;
 use App\Models\Project\Opportunity;
 use App\Models\Project\Project;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,6 +52,11 @@ class User extends Authenticatable {
     public function participatedProjects(): BelongsToMany {
         return $this->belongsToMany(Project::class, 'project_members');
     }
+
+    public function messages(): HasMany {
+        return $this->hasMany(Message::class);
+    }
+
 
     protected function casts(): array {
         return [

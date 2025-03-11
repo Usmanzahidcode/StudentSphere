@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Project\Application\ApplicationCreateRequest;
 use App\Http\Requests\Project\Application\ApplicationUpdateRequest;
+use App\Models\FileType;
 use App\Models\Project\Application;
-use App\Models\Project\FileType;
 use App\Models\Project\Opportunity;
 use Illuminate\Support\Facades\Storage;
 

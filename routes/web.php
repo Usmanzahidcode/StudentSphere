@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\Project\ApplicationController;
+use App\Http\Controllers\Project\MessageController;
 use App\Http\Controllers\Project\OpportunityController;
 use App\Http\Controllers\Project\ProjectController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,9 @@ Route::group(['middleware' => 'authenticated'], function () {
 
         Route::patch('/{project}/abort', [ProjectController::class, 'abortProject'])->name('projects.abort');
         Route::patch('/{project}/complete', [ProjectController::class, 'completeProject'])->name('projects.complete');
+
+        // Chat
+        Route::post('/{project}/messages', [MessageController::class, 'store'])->name('messages.store');
     });
 
     // Files

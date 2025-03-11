@@ -29,8 +29,6 @@
             </form>
         @endif
 
-
-
         <div class="mb-4"></div>
 
         <!-- Project Status with Timeline -->
@@ -119,38 +117,29 @@
             <h5 class="mb-0">Project Chat</h5>
         </div>
         <div class="card-body" style="max-height: 350px; overflow-y: auto;">
-            @php
-                $messages = [
-                    ['name' => 'Nonu Bhai', 'text' => 'Bawa g Sialkot', 'time' => '12 Jan 2024, 1 AM'],
-                    ['name' => 'Ali Raza', 'text' => 'Koi update hai?', 'time' => '12 Jan 2024, 1:05 AM'],
-                    ['name' => 'Fatima Noor', 'text' => 'Working on the UI changes.', 'time' => '12 Jan 2024, 1:10 AM'],
-                    ['name' => 'Hassan Khan', 'text' => 'Backend almost done!', 'time' => '12 Jan 2024, 1:15 AM'],
-                    ['name' => 'Sara Ahmed', 'text' => 'Need help with database schema.', 'time' => '12 Jan 2024, 1:20 AM'],
-                    ['name' => 'Usman Ali', 'text' => 'Testing phase initiated.', 'time' => '12 Jan 2024, 1:25 AM'],
-                    ['name' => 'Ayesha Tariq', 'text' => 'Found a bug in form validation.', 'time' => '12 Jan 2024, 1:30 AM'],
-                    ['name' => 'Bilal Saeed', 'text' => 'Let’s have a quick meeting.', 'time' => '12 Jan 2024, 1:35 AM'],
-                    ['name' => 'Zain Malik', 'text' => 'Deployment scheduled for tomorrow.', 'time' => '12 Jan 2024, 1:40 AM'],
-                    ['name' => 'Maria Khan', 'text' => 'Great work team! 🎉', 'time' => '12 Jan 2024, 1:45 AM'],
-                ];
-            @endphp
-
-            @foreach ($messages as $message)
-                <div class="mb-3 p-2 rounded bg-light">
-                    <strong class="text-primary">{{ $message['name'] }}:</strong> {{ $message['text'] }}
-                    <small class="text-muted d-block">{{ $message['time'] }}</small>
-                </div>
-            @endforeach
+            @if ($project->messages->isEmpty())
+                <p class="text-muted">No messages yet. Start the conversation!</p>
+            @else
+                @foreach ($project->messages as $message)
+                    <div class="mb-3 p-2 rounded bg-light">
+                        <strong class="text-primary">{{ $message->user->first_name }}:</strong>
+                        {{ $message->content }}
+                        <small class="text-muted d-block">{{ $message->created_at->format('d M Y, h:i A') }}</small>
+                    </div>
+                @endforeach
+            @endif
         </div>
         <div class="card-footer bg-light">
-            <form action="#" method="POST">
+            <form action="{{ route('messages.store', $project) }}" method="POST">
                 @csrf
                 <div class="input-group">
-                    <input type="text" name="message" class="form-control" placeholder="Type a message..." required>
+                    <input type="text" name="content" class="form-control" placeholder="Type a message..." required>
                     <button class="btn btn-primary">Send</button>
                 </div>
             </form>
         </div>
     </div>
+
 
 @endsection
 

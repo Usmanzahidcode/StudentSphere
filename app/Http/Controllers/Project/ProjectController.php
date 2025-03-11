@@ -33,9 +33,13 @@ class ProjectController extends Controller {
         return view('pages.project.project.project_start_user_selection', compact('opportunity', 'applications'));
     }
 
-    public function show(Project $project) {
-        return view('pages.project.project.project_details', ['project' => $project->load(['members', 'opportunity'])]);
+    public function show(Project $project)
+    {
+        return view('pages.project.project.project_details', [
+            'project' => $project->load(['members', 'opportunity', 'messages.user'])
+        ]);
     }
+
 
     public function removeMember(ProjectRemoveMemberRequest $request, Project $project) {
         if ($project->members()->count() <= 1) {
