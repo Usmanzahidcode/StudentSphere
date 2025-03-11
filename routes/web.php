@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\Project\ApplicationController;
 use App\Http\Controllers\Project\MessageController;
@@ -64,6 +65,10 @@ Route::group(['middleware' => 'authenticated'], function () {
 
     // Auth
     Route::get('/logout', [AuthController::class, 'submitLogout'])->name('logout.submit');
+
+    // Profile page
+    Route::get('/profile/{user}', [ProfileController::class, 'profile'])->name('profile.show');
+
 });
 
 Route::group(['middleware' => 'guest'], function () {
