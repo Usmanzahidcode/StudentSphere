@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\FileController;
@@ -71,7 +72,7 @@ Route::group(['middleware' => 'authenticated'], function () {
 
     // Account settings
     Route::middleware(['auth'])->group(function () {
-        Route::get('/account/profile', [AccountController::class, 'profile'])->name('account.profile');
+        Route::get('/account/profile', [AccountController::class, 'test'])->name('account.profile');
         Route::get('/account/security', [AccountController::class, 'security'])->name('account.security');
         Route::get('/account/preferences', [AccountController::class, 'preferences'])->name('account.preferences');
     });
