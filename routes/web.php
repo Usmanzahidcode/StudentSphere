@@ -69,6 +69,14 @@ Route::group(['middleware' => 'authenticated'], function () {
     // Profile page
     Route::get('/profile/{user}', [ProfileController::class, 'profile'])->name('profile.show');
 
+    // Account settings
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/account/profile', [AccountController::class, 'profile'])->name('account.profile');
+        Route::get('/account/security', [AccountController::class, 'security'])->name('account.security');
+        Route::get('/account/preferences', [AccountController::class, 'preferences'])->name('account.preferences');
+    });
+
+
 });
 
 Route::group(['middleware' => 'guest'], function () {
