@@ -71,10 +71,24 @@ Route::group(['middleware' => 'authenticated'], function () {
     Route::get('/profile/{user}', [ProfileController::class, 'profile'])->name('profile.show');
 
     // Account settings
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/account/profile', [AccountController::class, 'test'])->name('account.profile');
-        Route::get('/account/security', [AccountController::class, 'security'])->name('account.security');
-        Route::get('/account/preferences', [AccountController::class, 'preferences'])->name('account.preferences');
+    Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+        // GET Routes (Views)
+        Route::get('/profile', [AccountController::class, 'profile'])->name('profile');
+        Route::get('/background', [AccountController::class, 'background'])->name('background');
+        Route::get('/password', [AccountController::class, 'password'])->name('password');
+        Route::get('/projects', [AccountController::class, 'projects'])->name('projects');
+        Route::get('/management', [AccountController::class, 'management'])->name('management');
+
+        // POST Routes (Updates)
+        Route::post('/profile/update', [AccountController::class, 'updateProfile'])->name('profile.update');
+        Route::post('/background/update', [AccountController::class, 'updateBackground'])->name('background.update');
+        Route::post('/password/update', [AccountController::class, 'updatePassword'])->name('password.update');
+        Route::post('/projects/update', [AccountController::class, 'updateProjects'])->name('projects.update');
+        Route::post('/management/update', [AccountController::class, 'updateManagement'])->name('management.update');
+
+        Route::post('/account/deactivate', [AccountController::class, 'deactivate'])->name('deactivate');
+        Route::delete('/account/delete', [AccountController::class, 'delete'])->name('delete');
+
     });
 
 
