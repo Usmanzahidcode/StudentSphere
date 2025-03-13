@@ -89,22 +89,14 @@ class AccountController extends Controller {
     }
 
     public function updateProjects(Request $request) {
-        // Logic for updating projects can be implemented later
         return back()->with('success', 'Projects updated successfully.');
     }
 
     public function updateManagement(Request $request) {
-        // Logic for account management settings
         return back()->with('success', 'Account management settings updated successfully.');
     }
 
     // Account Actions
-    public function deactivate() {
-        $user = auth()->user();
-        $user->update(['active' => false]);
-        return back()->with('success', 'Account deactivated successfully.');
-    }
-
     public function delete() {
         $user = auth()->user();
         $user->delete();

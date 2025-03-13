@@ -12,12 +12,8 @@
 
     <div class="card mt-3 shadow-sm">
         <div class="card-body">
-            <h4 class="card-title mb-3">Dangerous</h4>
-            <form action="{{ route('account.deactivate') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-warning">Deactivate Account</button>
-            </form>
-            <hr>
+            <h4 class="card-title">Dangerous</h4>
+            <p class="mb-3">The actions below are irreversible!</p>
             <form action="{{ route('account.delete') }}" method="POST" onsubmit="return confirm('Are you sure? This action cannot be undone.')">
                 @csrf
                 @method('DELETE')
