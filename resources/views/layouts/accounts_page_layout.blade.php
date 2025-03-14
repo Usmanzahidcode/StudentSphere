@@ -1,53 +1,51 @@
 @extends('layouts.base_layout')
 
 @push('styles')
+
 @endpush
 
 @section('title')
-    Admin Panel | StudentSphere
+    Account Settings | StudentSphere
 @endsection
-
 @section('description')
-    Manage users, projects, and system settings.
+    Manage your account settings in StudentSphere
 @endsection
 
 @section('content')
-    <h1 class="mb-5">Admin Panel</h1>
+    <h1 class="mb-5">Account management!</h1>
     <div class="row">
         <!-- Sidebar Navigation Tabs -->
         <div class="tabs-wrapper d-flex flex-column gap-3 col-2 align-content-stretch">
-            <a href="{{ route('admin.dashboard') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.dashboard') ? 'btn-primary' : 'btn-success' }}">
-                Dashboard
+            <a href="{{ route('account.profile') }}"
+               class="btn rounded-pill {{ request()->routeIs('account.profile') ? 'btn-primary' : 'btn-success' }}">
+                Personal Information
             </a>
-            <a href="{{ route('admin.users') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.users') ? 'btn-primary' : 'btn-success' }}">
-                Users Management
+            <a href="{{ route('account.background') }}"
+               class="btn rounded-pill {{ request()->routeIs('account.background') ? 'btn-primary' : 'btn-success' }}">
+                Background Information
             </a>
-            <a href="{{ route('admin.projects') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.projects') ? 'btn-primary' : 'btn-success' }}">
-                Projects Management
+            <a href="{{ route('account.password') }}"
+               class="btn rounded-pill {{ request()->routeIs('account.password') ? 'btn-primary' : 'btn-success' }}">
+                Password & Security
             </a>
-            <a href="{{ route('admin.opportunities') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.opportunities') ? 'btn-primary' : 'btn-success' }}">
-                Opportunities Management
-            </a>
-            <a href="{{ route('admin.reports') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.reports') ? 'btn-primary' : 'btn-success' }}">
-                Reports & Logs
-            </a>
-            <a href="{{ route('admin.settings') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.settings') ? 'btn-primary' : 'btn-success' }}">
-                Site Settings
-            </a>
+                <a href="{{ route('account.projects') }}"
+                   class="btn rounded-pill {{ request()->routeIs('account.projects') ? 'btn-primary' : 'btn-success' }}">
+                    Projects & Opportunities
+                </a>
+                <a href="{{ route('account.management') }}"
+                   class="btn rounded-pill {{ request()->routeIs('account.management') ? 'btn-primary' : 'btn-success' }}">
+                    Account Management
+                </a>
         </div>
 
         <!-- Page Content -->
         <div class="page col-10">
-            @yield('admin_section')
+            @yield('account_section')
         </div>
     </div>
+
 @endsection
 
 @push('scripts')
 @endpush
+
