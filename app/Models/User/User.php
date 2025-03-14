@@ -3,9 +3,11 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\User\UserStatus;
 use App\Models\Project\Message;
 use App\Models\Project\Opportunity;
 use App\Models\Project\Project;
+use App\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +16,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     protected $fillable = [
         'first_name',
@@ -41,6 +43,10 @@ class User extends Authenticatable {
 
     // Relations
 
+    public function roles(): BelongsToMany {
+        return $this->belongsToMany(Role::class);
+    }
+
     public function opportunities(): HasMany {
         return $this->hasMany(Opportunity::class);
     }
@@ -63,6 +69,7 @@ class User extends Authenticatable {
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'dob' => 'datetime',
+            'status' => UserStatus::class,
         ];
     }
 }

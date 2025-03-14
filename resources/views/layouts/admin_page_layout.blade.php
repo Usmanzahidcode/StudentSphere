@@ -32,14 +32,6 @@
                class="btn rounded-pill {{ request()->routeIs('admin.opportunities') ? 'btn-primary' : 'btn-success' }}">
                 Opportunities Management
             </a>
-            <a href="{{ route('admin.reports') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.reports') ? 'btn-primary' : 'btn-success' }}">
-                Reports & Logs
-            </a>
-            <a href="{{ route('admin.settings') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.settings') ? 'btn-primary' : 'btn-success' }}">
-                Site Settings
-            </a>
         </div>
 
         <!-- Page Content -->

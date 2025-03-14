@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ProfileController;
@@ -90,6 +92,42 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::delete('/account/delete', [AccountController::class, 'delete'])->name('delete');
 
     });
+
+
+    // Admin side:
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.',
+        'middleware' => ['role:admin'],
+    ], function () {
+
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+        // Users Management
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/users', 'index')->name('users');
+            Route::get('/users/{user}', 'show')->name('users.show');
+            Route::post('/users/{user}/ban', 'ban')->name('users.ban');
+            Route::post('/users/{user}/unban', 'unban')->name('users.unban');
+        });
+
+        // Projects Management
+        Route::controller(ProjectController::class)->group(function () {
+            Route::get('/projects', 'index')->name('projects');
+            Route::get('/projects/{project}', 'show')->name('projects.show');
+            Route::post('/projects/{project}/approve', 'approve')->name('projects.approve');
+            Route::post('/projects/{project}/reject', 'reject')->name('projects.reject');
+        });
+
+        // Opportunities Management
+        Route::controller(OpportunityController::class)->group(function () {
+            Route::get('/opportunities', 'index')->name('opportunities');
+            Route::get('/opportunities/{opportunity}', 'show')->name('opportunities.show');
+            Route::post('/opportunities/{opportunity}/approve', 'approve')->name('opportunities.approve');
+            Route::post('/opportunities/{opportunity}/reject', 'reject')->name('opportunities.reject');
+        });
+    });
+
 
 
 });

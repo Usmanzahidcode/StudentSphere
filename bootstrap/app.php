@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\EnsureAuthenticated;
 use App\Http\Middleware\EnsureGuest;
+use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'authenticated' => EnsureAuthenticated::class,
             'guest' => EnsureGuest::class,
+            'role' => RoleMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
