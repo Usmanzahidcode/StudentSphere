@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard', [
+        return view('pages.admin.dashboard', [
             'totalUsers' => User::count(),
             'bannedUsers' => User::count(),
             'totalProjects' => Project::count(),
