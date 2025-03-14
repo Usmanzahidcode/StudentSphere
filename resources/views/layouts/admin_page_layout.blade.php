@@ -30,7 +30,7 @@
             </a>
             <a href="{{ route('admin.opportunities') }}"
                class="btn rounded-pill {{ request()->routeIs('admin.opportunities') ? 'btn-primary' : 'btn-success' }}">
-                Opportunities Management
+                Opportunities Mng
             </a>
         </div>
 

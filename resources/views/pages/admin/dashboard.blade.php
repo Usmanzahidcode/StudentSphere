@@ -1,4 +1,4 @@
-@extends('layouts.accounts_page_layout')
+@extends('layouts.admin_page_layout')
 
 @section('title')
     Admin Dashboard
@@ -7,8 +7,8 @@
     Overview of system stats and recent activities
 @endsection
 
-@section('content')
-    <h1 class="mb-4">Admin Dashboard</h1>
+@section('admin_section')
+    <h3 class="mb-4">Basic information</h3>
 
     <div class="row">
         <!-- Users Overview -->

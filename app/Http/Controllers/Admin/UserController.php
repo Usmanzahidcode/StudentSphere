@@ -2,44 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\User\UserStatus;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\User\User;
 
-class UserController extends Controller
-{
-    /**
-     * Display a listing of users.
-     */
-    public function index()
-    {
+class UserController extends Controller {
+    public function index() {
         $users = User::paginate(10);
-        return view('admin.users.index', compact('users'));
+        return view('pages.admin.users.index', compact('users'));
     }
 
-    /**
-     * Display a specific user.
-     */
-    public function show(User $user)
-    {
-        return view('admin.users.show', compact('user'));
+    public function show(User $user) {
+        return view('pages.admin.users.show', compact('user'));
     }
 
-    /**
-     * Ban a user.
-     */
-    public function ban(User $user)
-    {
-        $user->update(['status' => 'banned']);
+    public function ban(User $user) {
+        $user->update(['status' => UserStatus::BANNED]);
         return back()->with('success', 'User has been banned.');
     }
 
-    /**
-     * Unban a user.
-     */
-    public function unban(User $user)
-    {
-        $user->update(['status' => 'active']);
+    public function unban(User $user) {
+        $user->update(['status' => UserStatus::ACTIVE]);
         return back()->with('success', 'User has been unbanned.');
     }
 }

@@ -94,7 +94,7 @@ Route::group(['middleware' => 'authenticated'], function () {
     });
 
 
-    // Admin side:
+    // Admin side
     Route::group([
         'prefix' => 'admin',
         'as' => 'admin.',
