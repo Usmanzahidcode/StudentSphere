@@ -16,8 +16,6 @@ Route::view('/', 'pages.homepage')->name('homepage');
 
 
 Route::group(['middleware' => 'authenticated'], function () {
-    // Pages
-
     // Opportunity
     Route::group(['prefix' => 'opportunities'], function () {
         Route::get('/', [OpportunityController::class, 'index'])->name('opportunities.index');
@@ -95,12 +93,7 @@ Route::group(['middleware' => 'authenticated'], function () {
 
 
     // Admin side
-    Route::group([
-        'prefix' => 'admin',
-        'as' => 'admin.',
-        'middleware' => ['role:admin'],
-    ], function () {
-
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admin'],], function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         // Users Management
@@ -113,23 +106,19 @@ Route::group(['middleware' => 'authenticated'], function () {
 
         // Projects Management
         Route::controller(ProjectController::class)->group(function () {
-            Route::get('/projects', 'index')->name('projects');
-            Route::get('/projects/{project}', 'show')->name('projects.show');
-            Route::post('/projects/{project}/approve', 'approve')->name('projects.approve');
-            Route::post('/projects/{project}/reject', 'reject')->name('projects.reject');
+            Route::get('/projects', 'adminIndex')->name('projects');
+            Route::get('/projects/{project}', 'adminShow')->name('projects.show');
+            Route::post('/projects/{project}/reject', 'abort')->name('projects.reject');
         });
 
         // Opportunities Management
         Route::controller(OpportunityController::class)->group(function () {
-            Route::get('/opportunities', 'index')->name('opportunities');
-            Route::get('/opportunities/{opportunity}', 'show')->name('opportunities.show');
+            Route::get('/opportunities', 'adminIndex')->name('opportunities');
+            Route::get('/opportunities/{opportunity}', 'adminShow')->name('opportunities.show');
             Route::post('/opportunities/{opportunity}/approve', 'approve')->name('opportunities.approve');
             Route::post('/opportunities/{opportunity}/reject', 'reject')->name('opportunities.reject');
         });
     });
-
-
-
 });
 
 Route::group(['middleware' => 'guest'], function () {

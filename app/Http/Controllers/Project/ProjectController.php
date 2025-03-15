@@ -11,6 +11,21 @@ use App\Models\Project\Opportunity;
 use App\Models\Project\Project;
 
 class ProjectController extends Controller {
+    public function adminIndex() {
+        $projects = Project::latest()->where('status', ProjectStatus::IN_PROGRESS)->paginate(10);
+        return view('pages.admin.projects.index', compact('projects'));
+    }
+
+    public function adminShow(Project $project) {
+        $project->load(['user', 'members', 'opportunity']);
+        return view('pages.admin.projects.show', compact('project'));
+    }
+
+    public function abort(Project $project) {
+        $project->update(['status' => 'aborted']);
+        return back()->with('success', 'Project has been aborted.');
+    }
+
     public function store(ProjectInitializeRequest $request, Opportunity $opportunity) {
         $project = $opportunity->project()->create([
             'user_id' => $opportunity->user_id,
@@ -33,13 +48,11 @@ class ProjectController extends Controller {
         return view('pages.project.project.project_start_user_selection', compact('opportunity', 'applications'));
     }
 
-    public function show(Project $project)
-    {
+    public function show(Project $project) {
         return view('pages.project.project.project_details', [
             'project' => $project->load(['members', 'opportunity', 'messages.user'])
         ]);
     }
-
 
     public function removeMember(ProjectRemoveMemberRequest $request, Project $project) {
         if ($project->members()->count() <= 1) {
