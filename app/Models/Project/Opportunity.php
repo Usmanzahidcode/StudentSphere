@@ -4,7 +4,9 @@ namespace App\Models\Project;
 
 use App\Enums\Project\OpportunityStatus;
 use App\Models\File;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -24,13 +26,17 @@ class Opportunity extends Model {
 
 
     // Relationships
-
     public function applications(): HasMany {
         return $this->hasMany(Application::class);
     }
 
     public function project(): HasOne {
         return $this->hasOne(Project::class);
+    }
+
+    // Reverse
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
     }
 
     protected function casts(): array {

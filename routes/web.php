@@ -100,7 +100,6 @@ Route::group(['middleware' => 'authenticated'], function () {
         'as' => 'admin.',
         'middleware' => ['role:admin'],
     ], function () {
-
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         // Users Management
@@ -121,13 +120,12 @@ Route::group(['middleware' => 'authenticated'], function () {
 
         // Opportunities Management
         Route::controller(OpportunityController::class)->group(function () {
-            Route::get('/opportunities', 'index')->name('opportunities');
-            Route::get('/opportunities/{opportunity}', 'show')->name('opportunities.show');
+            Route::get('/opportunities', 'adminIndex')->name('opportunities');
+            Route::get('/opportunities/{opportunity}', 'adminShow')->name('opportunities.show');
             Route::post('/opportunities/{opportunity}/approve', 'approve')->name('opportunities.approve');
             Route::post('/opportunities/{opportunity}/reject', 'reject')->name('opportunities.reject');
         });
     });
-
 
 
 });
