@@ -114,8 +114,7 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::controller(ProjectController::class)->group(function () {
             Route::get('/projects', 'adminIndex')->name('projects');
             Route::get('/projects/{project}', 'adminShow')->name('projects.show');
-            Route::post('/projects/{project}/approve', 'approve')->name('projects.approve');
-            Route::post('/projects/{project}/reject', 'reject')->name('projects.reject');
+            Route::post('/projects/{project}/reject', 'abort')->name('projects.reject');
         });
 
         // Opportunities Management

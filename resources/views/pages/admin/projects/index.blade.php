@@ -23,8 +23,8 @@
                             </span>
                     </td>
                     <td>
-                        <a href="{{ route('projects.show', $project) }}" class="btn btn-info btn-sm">View</a>
-                        
+                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-info btn-sm">View</a>
+
                         <form action="{{ route('projects.abort', $project) }}" method="POST" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btn-warning btn-sm">Abort</button>

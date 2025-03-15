@@ -17,7 +17,7 @@ class ProjectController extends Controller {
     }
 
     public function adminShow(Project $project) {
-        $project->load(['authors', 'members', 'opportunity']);
+        $project->load(['user', 'members', 'opportunity']);
         return view('pages.admin.projects.show', compact('project'));
     }
 
@@ -25,12 +25,7 @@ class ProjectController extends Controller {
         $project->update(['status' => 'aborted']);
         return back()->with('success', 'Project has been aborted.');
     }
-
-    public function closeOpportunity(Opportunity $opportunity) {
-        $opportunity->update(['status' => 'closed']);
-        return back()->with('success', 'Opportunity has been closed.');
-    }
-
+    
     public function store(ProjectInitializeRequest $request, Opportunity $opportunity) {
         $project = $opportunity->project()->create([
             'user_id' => $opportunity->user_id,

@@ -2,24 +2,22 @@
 
 @section('admin_section')
     <div class="container">
-        <h1>Project Details</h1>
+        <h3>Project Details</h3>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ $project->title }}</h5>
                 <p class="card-text"><strong>Status:</strong>
-                    <span class="badge text-white {{ $project->status->value === 'active' ? 'bg-success' : 'bg-danger' }}">
+                    <span class="badge text-white {{ $project->status->value === 'in_progress' ? 'bg-success' : 'bg-danger' }}">
                         {{ ucfirst($project->status->value) }}
                     </span>
                 </p>
                 <p class="card-text"><strong>Description:</strong> {!! $project->description !!}</p>
 
-                <h5>Authors</h5>
+                <h5>Author</h5>
                 <ul>
-                    @foreach ($project->authors as $author)
-                        <li>
-                            <a href="{{ route('admin.users.show', $author) }}">{{ $author->first_name }} {{ $author->last_name }}</a>
-                        </li>
-                    @endforeach
+                    <li>
+                        <a href="{{ route('admin.users.show', $project->user->id) }}">{{ $project->user->first_name }} {{ $project->user->last_name }}</a>
+                    </li>
                 </ul>
 
                 <h5>Members</h5>
@@ -36,23 +34,14 @@
                     <p>
                         <a href="{{ route('admin.opportunities.show', $project->opportunity) }}">{{ $project->opportunity->title }}</a>
                     </p>
-
-                    @if($project->opportunity->status->value !== 'closed')
-                        <form action="{{ route('opportunities.close', $project->opportunity) }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Close Opportunity</button>
-                        </form>
-                    @endif
                 @endif
 
-                @if($project->status->value === 'active')
-                    <form action="{{ route('projects.abort', $project) }}" method="POST" class="d-inline">
+                    <form action="{{ route('admin.projects.reject', $project) }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-warning">Abort Project</button>
                     </form>
-                @endif
 
-                <a href="{{ route('projects') }}" class="btn btn-secondary">Back to Projects</a>
+                <a href="{{ route('admin.projects') }}" class="btn btn-secondary">Back to Projects</a>
             </div>
         </div>
     </div>
