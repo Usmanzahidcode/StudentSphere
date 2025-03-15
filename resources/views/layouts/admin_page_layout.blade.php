@@ -21,7 +21,7 @@
                 Dashboard
             </a>
             <a href="{{ route('admin.users') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.users') ? 'btn-primary' : 'btn-success' }}">
+               class="btn rounded-pill {{ request()->routeIs('admin.users') || request()->routeIs('admin.users.show') ? 'btn-primary' : 'btn-success' }}">
                 Users Management
             </a>
             <a href="{{ route('admin.projects') }}"
