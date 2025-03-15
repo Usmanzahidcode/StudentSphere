@@ -20,19 +20,21 @@
                     <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                            <span class="badge {{ $user->status->value === 'active' ? 'bg-success' : 'bg-danger' }}">
+                            <span class="badge {{ $user->status->value === 'active' ? 'bg-success' : 'bg-danger' }} text-white">
                                 {{ ucfirst($user->status->value) }}
                             </span>
                     </td>
                     <td>
                         <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary btn-sm">View</a>
                         @if($user->status->value === 'active')
-                            <form action="{{ route('admin.users.ban', $user) }}" method="POST" class="d-inline" onsubmit="confirm('Are you sure you want to ban this user?')">
+                            <form action="{{ route('admin.users.ban', $user) }}" method="POST" class="d-inline"
+                                  onsubmit="confirm('Are you sure you want to ban this user?')">
                                 @csrf
                                 <button type="submit" class="btn btn-warning btn-sm">Ban</button>
                             </form>
                         @else
-                            <form action="{{ route('admin.users.unban', $user) }}" method="POST" class="d-inline" onsubmit="confirm('Confirm to unban this user!')">
+                            <form action="{{ route('admin.users.unban', $user) }}" method="POST" class="d-inline"
+                                  onsubmit="confirm('Confirm to unban this user!')">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm">Unban</button>
                             </form>
