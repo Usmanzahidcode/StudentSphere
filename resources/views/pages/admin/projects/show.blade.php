@@ -36,10 +36,10 @@
                     </p>
                 @endif
 
-                    <form action="{{ route('admin.projects.reject', $project) }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-warning">Abort Project</button>
-                    </form>
+                <form action="{{ route('admin.projects.reject', $project) }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-warning">Abort Project</button>
+                </form>
 
                 <a href="{{ route('admin.projects') }}" class="btn btn-secondary">Back to Projects</a>
             </div>
