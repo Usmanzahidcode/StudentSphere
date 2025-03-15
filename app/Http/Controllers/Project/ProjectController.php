@@ -11,6 +11,26 @@ use App\Models\Project\Opportunity;
 use App\Models\Project\Project;
 
 class ProjectController extends Controller {
+    public function adminIndex() {
+        $projects = Project::latest()->where('status', ProjectStatus::IN_PROGRESS)->paginate(10);
+        return view('pages.admin.projects.index', compact('projects'));
+    }
+
+    public function adminShow(Project $project) {
+        $project->load(['authors', 'members', 'opportunity']);
+        return view('pages.admin.projects.show', compact('project'));
+    }
+
+    public function abort(Project $project) {
+        $project->update(['status' => 'aborted']);
+        return back()->with('success', 'Project has been aborted.');
+    }
+
+    public function closeOpportunity(Opportunity $opportunity) {
+        $opportunity->update(['status' => 'closed']);
+        return back()->with('success', 'Opportunity has been closed.');
+    }
+
     public function store(ProjectInitializeRequest $request, Opportunity $opportunity) {
         $project = $opportunity->project()->create([
             'user_id' => $opportunity->user_id,

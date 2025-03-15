@@ -112,8 +112,8 @@ Route::group(['middleware' => 'authenticated'], function () {
 
         // Projects Management
         Route::controller(ProjectController::class)->group(function () {
-            Route::get('/projects', 'index')->name('projects');
-            Route::get('/projects/{project}', 'show')->name('projects.show');
+            Route::get('/projects', 'adminIndex')->name('projects');
+            Route::get('/projects/{project}', 'adminShow')->name('projects.show');
             Route::post('/projects/{project}/approve', 'approve')->name('projects.approve');
             Route::post('/projects/{project}/reject', 'reject')->name('projects.reject');
         });
