@@ -25,7 +25,7 @@ class ProjectController extends Controller {
         $project->update(['status' => 'aborted']);
         return back()->with('success', 'Project has been aborted.');
     }
-    
+
     public function store(ProjectInitializeRequest $request, Opportunity $opportunity) {
         $project = $opportunity->project()->create([
             'user_id' => $opportunity->user_id,

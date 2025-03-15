@@ -16,8 +16,6 @@ Route::view('/', 'pages.homepage')->name('homepage');
 
 
 Route::group(['middleware' => 'authenticated'], function () {
-    // Pages
-
     // Opportunity
     Route::group(['prefix' => 'opportunities'], function () {
         Route::get('/', [OpportunityController::class, 'index'])->name('opportunities.index');
@@ -95,11 +93,7 @@ Route::group(['middleware' => 'authenticated'], function () {
 
 
     // Admin side
-    Route::group([
-        'prefix' => 'admin',
-        'as' => 'admin.',
-        'middleware' => ['role:admin'],
-    ], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admin'],], function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         // Users Management
@@ -125,8 +119,6 @@ Route::group(['middleware' => 'authenticated'], function () {
             Route::post('/opportunities/{opportunity}/reject', 'reject')->name('opportunities.reject');
         });
     });
-
-
 });
 
 Route::group(['middleware' => 'guest'], function () {

@@ -11,6 +11,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
+        /// KPIs methods
         return view('pages.admin.dashboard', [
             // Users
             'totalUsers' => User::count(),

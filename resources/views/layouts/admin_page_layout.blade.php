@@ -29,7 +29,7 @@
                 Projects Management
             </a>
             <a href="{{ route('admin.opportunities') }}"
-               class="btn rounded-pill {{ request()->routeIs('admin.opportunities') ? 'btn-primary' : 'btn-success' }}">
+               class="btn rounded-pill {{ request()->routeIs('admin.opportunities') || request()->routeIs('admin.opportunities.show') ? 'btn-primary' : 'btn-success' }}">
                 Opportunities Mng
             </a>
         </div>
