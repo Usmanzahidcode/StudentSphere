@@ -37,7 +37,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Unban</button>
                             </form>
                         @endif
-                    </td> 
+                    </td>  
                 </tr>
             @endforeach
             </tbody>
