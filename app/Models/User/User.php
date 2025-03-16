@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\User\UserStatus;
+use App\Models\ForumPost;
 use App\Models\Project\Message;
 use App\Models\Project\Opportunity;
 use App\Models\Project\Project;
@@ -54,6 +55,10 @@ class User extends Authenticatable {
 
     public function projects(): HasMany {
         return $this->hasMany(Project::class);
+    }
+
+    public function forumPosts(): HasMany {
+        return $this->hasMany(ForumPost::class);
     }
 
     public function participatedProjects(): BelongsToMany {
