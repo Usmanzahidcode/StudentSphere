@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Forum\ForumPostCreateRequest;
 use App\Models\ForumPost;
 use Illuminate\Http\Request;
 
@@ -11,16 +12,10 @@ class ForumPostController extends Controller {
         return view('pages.forum.index', compact('forumPosts'));
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
-
-        ForumPost::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'content' => $request->content_,
+    public function store(ForumPostCreateRequest $request) {
+        auth()->user()->forumPosts()->create([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
         ]);
 
         return back()->with('success', 'Forum post created successfully.');

@@ -74,6 +74,7 @@ Route::group(['middleware' => 'authenticated'], function () {
     Route::controller(ForumPostController::class)->group(function () {
         Route::get('/forums', 'index')->name('forums');
         Route::post('/forums', 'store')->name('forums.store');
+        Route::patch('/forums', 'update')->name('forums.update');
         Route::delete('/forums/{forum}', 'destroy')->name('forums.destroy');
     });
 
