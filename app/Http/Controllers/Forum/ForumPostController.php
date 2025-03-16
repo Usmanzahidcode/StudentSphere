@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Forum;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Forum\ForumPostCreateRequest;
+use App\Http\Requests\Forum\ForumPostUpdateRequest;
 use App\Models\ForumPost;
-use Illuminate\Http\Request;
 
 class ForumPostController extends Controller {
     public function index() {
@@ -21,15 +22,10 @@ class ForumPostController extends Controller {
         return back()->with('success', 'Forum post created successfully.');
     }
 
-    public function update(Request $request, ForumPost $forumPost) {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
-
+    public function update(ForumPostUpdateRequest $request, ForumPost $forumPost) {
         $forumPost->update([
-            'title' => $request->title,
-            'content' => $request->content_,
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
         ]);
 
         return back()->with('success', 'Forum post updated successfully.');
