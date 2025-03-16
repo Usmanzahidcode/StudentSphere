@@ -51,16 +51,43 @@
         <div class="list-group">
             @foreach($forumPosts as $post)
                 <div class="list-group-item p-4 shadow-sm rounded border">
-                    <!-- Post Title -->
-                    <h5 class="fw-bold mb-2">{{ $post->title }}</h5>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <!-- Post Title -->
+                            <h5 class="fw-bold mb-2">{{ $post->title }}</h5>
 
-                    <!-- Post Content -->
-                    <p class="mb-2">{{ $post->content }}</p>
+                            <!-- Post Content -->
+                            <p class="mb-2">{{ $post->content }}</p>
 
-                    <!-- Post Meta -->
-                    <small class="text-muted">
-                        Posted by <strong>{{ $post->user->first_name }} {{ $post->user->last_name }}</strong> • {{ $post->created_at->diffForHumans() }}
-                    </small>
+                            <!-- Post Meta -->
+                            <small class="text-muted">
+                                Posted by <strong>{{ $post->user->first_name }} {{ $post->user->last_name }}</strong> • {{ $post->created_at->diffForHumans() }}
+                            </small>
+                        </div>
+
+                        <!-- Upvote & Downvote Section -->
+                        <div class="text-center">
+                            <form action="{{ route('forums.vote', ['forumPost' => $post->id]) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="type" value="upvote">
+                                <button type="submit"
+                                        class="btn btn-outline-success btn-sm {{ $post->userVote(auth()->user())?->type->value === 'upvote' ? 'active' : '' }}">
+                                    🔼 {{ $post->upvotes->count() }}
+                                </button>
+                            </form>
+
+                            <div class="fw-bold">{{ $post->voteScore() }}</div>
+
+                            <form action="{{ route('forums.vote', ['forumPost' => $post->id]) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="type" value="downvote">
+                                <button type="submit"
+                                        class="btn btn-outline-danger btn-sm {{ $post->userVote(auth()->user())?->type->value === 'downvote' ? 'active' : '' }}">
+                                    🔽 {{ $post->downvotes->count() }}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
 
                     <!-- Edit & Delete Buttons (Only for the Post Owner) -->
                     @if(auth()->id() === $post->user_id)
@@ -101,7 +128,6 @@
                 </div>
             @endforeach
         </div>
-
 
         {{-- Pagination --}}
         <div class="mt-4">

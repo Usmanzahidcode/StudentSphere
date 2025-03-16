@@ -76,6 +76,7 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::post('/forums', 'store')->name('forums.store');
         Route::patch('/forums/{forumPost}', 'update')->name('forums.update');
         Route::delete('/forums/{forumPost}', 'destroy')->name('forums.destroy');
+        Route::post('/forums/{forumPost}/vote', 'vote')->name('forums.vote');
     });
 
 
