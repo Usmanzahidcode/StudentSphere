@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.homepage')->name('homepage');
 
+// No auth needed routes
+Route::group(['middleware' => 'guest'], function () {
+    // Auth routes
+    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register.form');
+    Route::post('/register', [AuthController::class, 'submitRegistrationForm'])->name('register.submit');
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+    Route::post('/login', [AuthController::class, 'submitLoginForm'])->name('login.submit');
+});
 
 Route::group(['middleware' => 'authenticated'], function () {
     // Opportunity
@@ -39,6 +48,7 @@ Route::group(['middleware' => 'authenticated'], function () {
 
     });
 
+    // Projects
     Route::group(['prefix' => 'projects'], function () {
         Route::get('/create/{opportunity}', [ProjectController::class, 'create'])
             ->name('projects.create');
@@ -59,6 +69,8 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::post('/{project}/messages', [MessageController::class, 'store'])->name('messages.store');
     });
 
+    // Forum
+
     // Files
     Route::group(['prefix' => 'files'], function () {
         Route::get('{file}/download', [FileController::class, 'download'])->name('files.download')->withoutMiddleware(['authenticated']);
@@ -67,7 +79,7 @@ Route::group(['middleware' => 'authenticated'], function () {
     // Auth
     Route::get('/logout', [AuthController::class, 'submitLogout'])->name('logout.submit');
 
-    // Profile page
+    // Public profile page
     Route::get('/profile/{user}', [ProfileController::class, 'profile'])->name('profile.show');
 
     // Account settings
@@ -90,7 +102,6 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::delete('/account/delete', [AccountController::class, 'delete'])->name('delete');
 
     });
-
 
     // Admin side
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admin'],], function () {
@@ -119,13 +130,4 @@ Route::group(['middleware' => 'authenticated'], function () {
             Route::post('/opportunities/{opportunity}/reject', 'reject')->name('opportunities.reject');
         });
     });
-});
-
-Route::group(['middleware' => 'guest'], function () {
-    // Auth routes
-    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register.form');
-    Route::post('/register', [AuthController::class, 'submitRegistrationForm'])->name('register.submit');
-
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-    Route::post('/login', [AuthController::class, 'submitLoginForm'])->name('login.submit');
 });
