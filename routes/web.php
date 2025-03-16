@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ForumPostController;
 use App\Http\Controllers\Project\ApplicationController;
 use App\Http\Controllers\Project\MessageController;
 use App\Http\Controllers\Project\OpportunityController;
@@ -70,6 +71,12 @@ Route::group(['middleware' => 'authenticated'], function () {
     });
 
     // Forum
+    Route::controller(ForumPostController::class)->group(function () {
+        Route::get('/forums', 'index')->name('forums');
+        Route::post('/forums', 'store')->name('forums.store');
+        Route::delete('/forums/{forum}', 'destroy')->name('forums.destroy');
+    });
+
 
     // Files
     Route::group(['prefix' => 'files'], function () {
