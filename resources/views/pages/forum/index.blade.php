@@ -109,7 +109,7 @@
                         <div id="edit-form-{{ $post->id }}" class="mt-3 d-none p-3 border rounded bg-light">
                             <form action="{{ route('forums.update', $post) }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                @method('PATCH')
                                 <div class="mb-2">
                                     <input type="text" name="title" class="form-control" value="{{ $post->title }}" required>
                                 </div>
