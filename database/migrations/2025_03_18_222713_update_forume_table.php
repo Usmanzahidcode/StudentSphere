@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::table('forum_posts', function (Blueprint $table) {
             $table->enum('status', ['under_review', 'published'])
-                ->default('published')
+                ->default('under_review')
             ->after('content');
         });
     }

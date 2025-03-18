@@ -50,7 +50,7 @@
         {{-- Forum Posts List --}}
         <div class="list-group">
             @foreach($forumPosts as $post)
-                <div class="list-group-item p-4 shadow-sm rounded border">
+                <div class="list-group-item p-4 shadow-sm rounded border mb-3">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
                             <!-- Post Title -->
