@@ -7,13 +7,15 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\Forum\ForumPostController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Project\ApplicationController;
 use App\Http\Controllers\Project\MessageController;
 use App\Http\Controllers\Project\OpportunityController;
 use App\Http\Controllers\Project\ProjectController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'pages.homepage')->name('homepage');
+
+Route::get('/', [HomePageController::class, 'home'])->name('homepage');
 
 // No auth needed routes
 Route::group(['middleware' => 'guest'], function () {
