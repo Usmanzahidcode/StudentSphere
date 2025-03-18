@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\EnsureAuthenticated;
 use App\Http\Middleware\EnsureGuest;
+use App\Http\Middleware\EnsureUserIsNotBanned;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'authenticated' => EnsureAuthenticated::class,
             'guest' => EnsureGuest::class,
             'role' => RoleMiddleware::class,
+            'non_banned' => EnsureUserIsNotBanned::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
