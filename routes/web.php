@@ -25,7 +25,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', [AuthController::class, 'submitLoginForm'])->name('login.submit');
 });
 
-Route::group(['middleware' => 'authenticated'], function () {
+Route::group(['middleware' => ['authenticated', 'non_banned']], function () {
     // Opportunity
     Route::group(['prefix' => 'opportunities'], function () {
         Route::get('/', [OpportunityController::class, 'index'])->name('opportunities.index');
@@ -146,7 +146,5 @@ Route::group(['middleware' => 'authenticated'], function () {
             Route::post('/forums/{forumPost}/approve', 'approve')->name('forums.approve');
             Route::delete('/forums/{forumPost}', 'destroy')->name('forums.destroy');
         });
-
-
     });
 });
