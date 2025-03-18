@@ -99,6 +99,7 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::get('/password', [AccountController::class, 'password'])->name('password');
         Route::get('/projects', [AccountController::class, 'projects'])->name('projects');
         Route::get('/management', [AccountController::class, 'management'])->name('management');
+        Route::get('/account/forum', [AccountController::class, 'forumPosts'])->name('forum');
 
         // POST Routes (Updates)
         Route::post('/profile/update', [AccountController::class, 'updateProfile'])->name('profile.update');

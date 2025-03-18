@@ -15,7 +15,7 @@ class AccountController extends Controller {
 
     public function background() {
         $user = auth()->user();
-        $background = $user->background; // Assuming relationship exists
+        $background = $user->educationalBackground();
         return view('pages.auth.account.background', compact('background'));
     }
 
@@ -31,6 +31,13 @@ class AccountController extends Controller {
 
         return view('pages.auth.account.projects', compact('projects', 'participatedProjects', 'opportunities'));
     }
+
+    public function forumPosts() {
+        $forumPosts = auth()->user()->forumPosts()->latest()->get();
+
+        return view('pages.auth.account.account_forum', compact('forumPosts'));
+    }
+
 
     public function management() {
         $user = auth()->user();

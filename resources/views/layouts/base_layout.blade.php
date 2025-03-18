@@ -39,8 +39,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('homepage') }}">
-            <img src="{{asset('assets/images/logo.png')}}" class="img-fluid logo-image">
-
+            <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid logo-image">
             <div class="d-flex flex-column">
                 <strong class="logo-text">StudentSphere</strong>
                 <small class="logo-slogan">Empowering Connections, Elevating Futures.</small>
@@ -62,30 +61,28 @@
                     <a class="nav-link" href="{{ route('opportunities.index') }}">Opportunities</a>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarProjectsDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarProjectsDropdown">
+                            <li><a class="dropdown-item" href="{{ route('account.projects') }}">My Projects</a></li>
+                        </ul>
+                    </li>
 
-                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                        <li><a class="dropdown-item" href="job-listings.html">My Projects</a></li>
-                        {{--TODO: Yet to be decided--}}
-                        <li><a class="dropdown-item" href="job-details.html">My opportunities</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('forums') }}">Forum</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Forum</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('account.profile') }}">Account</a>
+                    </li>
+                @endauth
 
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Account</a>
-                </li>
-
-                @if(!Auth::check())
+                @guest
                     <li class="nav-item ms-lg-auto">
                         <a class="nav-link" href="{{ route('register.form') }}">Register</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link custom-btn btn" href="{{ route('login.form') }}">Login</a>
                     </li>
@@ -93,11 +90,12 @@
                     <li class="nav-item ms-lg-auto">
                         <a class="nav-link custom-btn btn" href="{{ route('logout.submit') }}">Logout</a>
                     </li>
-                @endif
+                @endguest
             </ul>
         </div>
     </div>
 </nav>
+
 
 <main>
     <div class="container py-5 min-vh-100">

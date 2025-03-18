@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Forum;
 
-use App\Enums\ForumPostVoteType;
+use App\Enums\Forum\ForumPostVoteType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ForumPostVoteRequest extends FormRequest {
