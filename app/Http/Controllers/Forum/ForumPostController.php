@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Enums\Forum\ForumPostStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Forum\ForumPostCreateRequest;
 use App\Http\Requests\Forum\ForumPostUpdateRequest;
@@ -10,22 +11,27 @@ use App\Models\ForumPost;
 
 class ForumPostController extends Controller {
     public function index() {
-        $forumPosts = ForumPost::latest()->paginate(10);
+        $forumPosts = ForumPost::where('status', ForumPostStatus::PUBLISHED)->latest()->paginate(10);
         return view('pages.forum.index', compact('forumPosts'));
+    }
+
+    public function adminIndex() {
+        $forumPosts = ForumPost::with('user')->latest()->paginate(10);
+        return view('pages.admin.forum.forum_management', compact('forumPosts'));
     }
 
     public function store(ForumPostCreateRequest $request) {
         auth()->user()->forumPosts()->create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
+            'status' => 'under_review', // New posts start as under review
         ]);
 
-        return back()->with('success', 'Forum post created successfully.');
+        return back()->with('success', 'Forum post created successfully and is under review.');
     }
 
     public function destroy(ForumPost $forumPost) {
         $forumPost->delete();
-
         return back()->with('success', 'Forum post deleted successfully.');
     }
 
@@ -39,7 +45,7 @@ class ForumPostController extends Controller {
                 $existingVote->update(['type' => $request->type]);
             }
         } else {
-            $vote = $forumPost->votes()->create([
+            $forumPost->votes()->create([
                 'user_id' => auth()->id(),
                 'type' => $request->type,
             ]);
@@ -55,5 +61,10 @@ class ForumPostController extends Controller {
         ]);
 
         return back()->with('success', 'Forum post updated successfully.');
+    }
+
+    public function approve(ForumPost $forumPost) {
+        $forumPost->update(['status' => ForumPostStatus::PUBLISHED]);
+        return back()->with('success', 'Forum post approved and published.');
     }
 }

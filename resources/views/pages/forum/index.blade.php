@@ -50,7 +50,7 @@
         {{-- Forum Posts List --}}
         <div class="list-group">
             @foreach($forumPosts as $post)
-                <div class="list-group-item p-4 shadow-sm rounded border">
+                <div class="list-group-item p-4 shadow-sm rounded border mb-3">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
                             <!-- Post Title -->
@@ -109,7 +109,7 @@
                         <div id="edit-form-{{ $post->id }}" class="mt-3 d-none p-3 border rounded bg-light">
                             <form action="{{ route('forums.update', $post) }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                @method('PATCH')
                                 <div class="mb-2">
                                     <input type="text" name="title" class="form-control" value="{{ $post->title }}" required>
                                 </div>

@@ -2,7 +2,7 @@
 
 namespace App\Models\Forum;
 
-use App\Enums\ForumPostVoteType;
+use App\Enums\Forum\ForumPostVoteType;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumPostVote extends Model {

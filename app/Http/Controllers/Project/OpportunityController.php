@@ -79,7 +79,8 @@ class OpportunityController extends Controller {
     }
 
     public function index() {
-        $opportunities = Opportunity::orderByDesc('created_at')
+        $opportunities = Opportunity::where('status', OpportunityStatus::OPEN)
+            ->orderByDesc('created_at')
             ->paginate(5);
 
         return view('pages.project.opportunities_listing', compact('opportunities'));

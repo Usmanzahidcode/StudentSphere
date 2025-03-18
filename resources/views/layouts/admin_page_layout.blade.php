@@ -32,6 +32,10 @@
                class="btn rounded-pill {{ request()->routeIs('admin.opportunities') || request()->routeIs('admin.opportunities.show') ? 'btn-primary' : 'btn-success' }}">
                 Opportunities Mng
             </a>
+            <a href="{{ route('admin.forums') }}"
+               class="btn rounded-pill {{ request()->routeIs('admin.forums') ? 'btn-primary' : 'btn-success' }}">
+                Forum Management
+            </a>
         </div>
 
         <!-- Page Content -->

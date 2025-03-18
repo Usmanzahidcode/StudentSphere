@@ -99,6 +99,7 @@ Route::group(['middleware' => 'authenticated'], function () {
         Route::get('/password', [AccountController::class, 'password'])->name('password');
         Route::get('/projects', [AccountController::class, 'projects'])->name('projects');
         Route::get('/management', [AccountController::class, 'management'])->name('management');
+        Route::get('/forum', [AccountController::class, 'forumPosts'])->name('forum');
 
         // POST Routes (Updates)
         Route::post('/profile/update', [AccountController::class, 'updateProfile'])->name('profile.update');
@@ -138,5 +139,14 @@ Route::group(['middleware' => 'authenticated'], function () {
             Route::post('/opportunities/{opportunity}/approve', 'approve')->name('opportunities.approve');
             Route::post('/opportunities/{opportunity}/reject', 'reject')->name('opportunities.reject');
         });
+
+        // Forum Management
+        Route::controller(ForumPostController::class)->group(function () {
+            Route::get('/forums', 'adminIndex')->name('forums');
+            Route::post('/forums/{forumPost}/approve', 'approve')->name('forums.approve');
+            Route::delete('/forums/{forumPost}', 'destroy')->name('forums.destroy');
+        });
+
+
     });
 });

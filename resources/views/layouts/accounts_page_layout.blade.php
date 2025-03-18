@@ -1,12 +1,12 @@
 @extends('layouts.base_layout')
 
 @push('styles')
-
 @endpush
 
 @section('title')
     Account Settings | StudentSphere
 @endsection
+
 @section('description')
     Manage your account settings in StudentSphere
 @endsection
@@ -28,14 +28,18 @@
                class="btn rounded-pill {{ request()->routeIs('account.password') ? 'btn-primary' : 'btn-success' }}">
                 Password & Security
             </a>
-                <a href="{{ route('account.projects') }}"
-                   class="btn rounded-pill {{ request()->routeIs('account.projects') ? 'btn-primary' : 'btn-success' }}">
-                    Projects & Opportunities
-                </a>
-                <a href="{{ route('account.management') }}"
-                   class="btn rounded-pill {{ request()->routeIs('account.management') ? 'btn-primary' : 'btn-success' }}">
-                    Account Management
-                </a>
+            <a href="{{ route('account.projects') }}"
+               class="btn rounded-pill {{ request()->routeIs('account.projects') ? 'btn-primary' : 'btn-success' }}">
+                Projects & Opportunities
+            </a>
+            <a href="{{ route('account.forum') }}"
+               class="btn rounded-pill {{ request()->routeIs('account.forum') ? 'btn-primary' : 'btn-success' }}">
+                Forum Posts
+            </a>
+            <a href="{{ route('account.management') }}"
+               class="btn rounded-pill {{ request()->routeIs('account.management') ? 'btn-primary' : 'btn-success' }}">
+                Account Management
+            </a>
         </div>
 
         <!-- Page Content -->
@@ -48,4 +52,3 @@
 
 @push('scripts')
 @endpush
-

@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\ForumPostVoteType;
+use App\Enums\Forum\ForumPostStatus;
+use App\Enums\Forum\ForumPostVoteType;
 use App\Models\Forum\ForumPostVote;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
@@ -14,18 +15,19 @@ class ForumPost extends Model {
         'user_id',
         'title',
         'content',
+        'status',
     ];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
 
-
-    // Relations
-
     public function voteScore() {
         return $this->upvotes()->count() - $this->downvotes()->count();
     }
+
+
+    // Relations
 
     public function upvotes() {
         return $this->votes()->where('type', ForumPostVoteType::UPVOTE);
@@ -41,6 +43,12 @@ class ForumPost extends Model {
 
     public function userVote(User $user) {
         return $this->votes()->where('user_id', $user->id)->first();
+    }
+
+    protected function casts(): array {
+        return [
+            'status' => ForumPostStatus::class,
+        ];
     }
 
 }
