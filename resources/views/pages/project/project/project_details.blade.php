@@ -91,7 +91,6 @@
                                     <span class="badge bg-secondary text-white me-3">{{ $member->email }}</span>
 
                                     <!-- Remove Action (Visible for Author) -->
-                                    {{--TODO: Add the proepr route here--}}
                                     @if (auth()->id() === $project->opportunity->user_id)
                                         <form action="{{ route('projects.remove-member', $project) }}" method="POST" class="d-inline">
                                             @csrf

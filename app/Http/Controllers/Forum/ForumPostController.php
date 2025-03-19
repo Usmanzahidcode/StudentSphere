@@ -24,7 +24,7 @@ class ForumPostController extends Controller {
         auth()->user()->forumPosts()->create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
-            'status' => 'under_review', // New posts start as under review
+            'status' => ForumPostStatus::UNDER_REVIEW,
         ]);
 
         return back()->with('success', 'Forum post created successfully and is under review.');
@@ -51,7 +51,7 @@ class ForumPostController extends Controller {
             ]);
         }
 
-        return back()->with('success', "Voted");
+        return back();
     }
 
     public function update(ForumPostUpdateRequest $request, ForumPost $forumPost) {

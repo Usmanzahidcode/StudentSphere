@@ -1268,7 +1268,7 @@ nav[aria-label="breadcrumb"] {
   SITE FOOTER
 -----------------------------------------*/
 .site-footer {
-    /*  todo: Removed for footer customization*/
+    /* Removed for footer customization*/
     /*padding-top: 100px;*/
     padding-bottom: 0;
 }
@@ -1279,7 +1279,7 @@ nav[aria-label="breadcrumb"] {
 
 .site-footer-bottom {
     background: var(--primary-color);
-    /* todo:  Removed for footer customization*/
+    /* Removed for footer customization*/
     /*margin-top: 100px;*/
     padding-top: 20px;
     padding-bottom: 20px;
