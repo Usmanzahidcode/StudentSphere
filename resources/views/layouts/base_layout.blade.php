@@ -122,7 +122,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-12 d-flex align-items-center">
-                    <p class="copyright-text">Copyright © StudentSphere 2048</p>
+                    <p class="copyright-text">Copyright © StudentSphere 2025</p>
                 </div>
 
                 <div class="col-lg-5 col-12 mt-2 mt-lg-0  d-flex align-items-center">
