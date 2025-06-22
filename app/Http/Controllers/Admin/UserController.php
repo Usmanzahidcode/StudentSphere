@@ -17,6 +17,10 @@ class UserController extends Controller {
     }
 
     public function ban(User $user) {
+        if($user->isAdmin()){
+            return back()->with('error', 'Cannot ban an admin.');
+        }
+
         $user->update(['status' => UserStatus::BANNED]);
         return back()->with('success', 'User has been banned.');
     }
