@@ -167,13 +167,67 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="educational_background.institution">Institution/University
-                                        Name</label>
-                                    <input type="text" id="educational_background.institution"
+                                    <label class="form-label" for="educational_background.institution">Institution/University Name</label>
+                                    <input list="institutions"
+                                           type="text"
+                                           id="educational_background.institution"
                                            name="educational_background[institution]"
                                            class="form-control form-control-lg @error('educational_background.institution') is-invalid @enderror"
                                            value="{{ old('educational_background.institution') }}"
-                                           placeholder="e.g., University of XYZ"/>
+                                           placeholder="e.g., University of XYZ" />
+                                    <datalist id="institutions">
+                                        <option value="University of the Punjab">
+                                        <option value="Lahore University of Management Sciences (LUMS)">
+                                        <option value="University of Engineering and Technology, Lahore (UET Lahore)">
+                                        <option value="COMSATS University Islamabad, Lahore Campus">
+                                        <option value="Government College University, Lahore">
+                                        <option value="University of Lahore (UOL)">
+                                        <option value="Forman Christian College (A Chartered University)">
+                                        <option value="University of Central Punjab (UCP)">
+                                        <option value="University of Management and Technology (UMT)">
+                                        <option value="King Edward Medical University, Lahore">
+                                        <option value="Fatima Jinnah Medical University, Lahore">
+                                        <option value="Allama Iqbal Medical College, Lahore">
+                                        <option value="National College of Arts (NCA), Lahore">
+                                        <option value="University of Sargodha">
+                                        <option value="University of Gujrat">
+                                        <option value="Bahauddin Zakariya University, Multan">
+                                        <option value="Islamia University of Bahawalpur">
+                                        <option value="University of Faisalabad">
+                                        <option value="National Textile University, Faisalabad">
+                                        <option value="Government College Women University, Faisalabad">
+                                        <option value="University of Agriculture, Faisalabad">
+                                        <option value="Punjab Tianjin University of Technology, Lahore">
+                                        <option value="Lahore College for Women University (LCWU)">
+                                        <option value="University of Okara">
+                                        <option value="University of Narowal">
+                                        <option value="University of Chakwal">
+                                        <option value="University of Mianwali">
+                                        <option value="Ghazi University, Dera Ghazi Khan">
+                                        <option value="University of Education, Lahore">
+                                        <option value="University of Veterinary and Animal Sciences, Lahore (UVAS)">
+                                        <option value="Beaconhouse National University, Lahore">
+                                        <option value="Riphah International University, Lahore Campus">
+                                        <option value="Superior University, Lahore">
+                                        <option value="Institute of Management Sciences, Lahore (Pak-AIMS)">
+                                        <option value="University of South Asia, Lahore">
+                                        <option value="Hajvery University, Lahore">
+                                        <option value="Lahore Garrison University">
+                                        <option value="University of Wah">
+                                        <option value="University of Jhang">
+                                        <option value="University of Swabi">
+                                        <option value="International Islamic University, Islamabad">
+                                        <option value="Quaid-i-Azam University, Islamabad">
+                                        <option value="National University of Sciences and Technology (NUST)">
+                                        <option value="Pakistan Institute of Engineering and Applied Sciences (PIEAS)">
+                                        <option value="Air University, Islamabad">
+                                        <option value="Bahria University, Islamabad">
+                                        <option value="Preston University, Islamabad">
+                                        <option value="Shaheed Zulfiqar Ali Bhutto Medical University, Islamabad">
+                                        <option value="Capital University of Science and Technology (CUST)">
+                                        <option value="Virtual University of Pakistan">
+                                    </datalist>
+
                                     @error('educational_background.institution')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                     @enderror
@@ -182,25 +236,68 @@
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <label class="form-label" for="educational_background.degree">Degree
                                         Program</label>
-                                    <input type="text" id="educational_background.degree"
+                                    <input
+                                        list="degree_programs"
+                                        type="text" id="educational_background.degree"
                                            name="educational_background[degree]"
                                            class="form-control form-control-lg @error('educational_background.degree') is-invalid @enderror"
                                            value="{{ old('educational_background.degree') }}"
                                            placeholder="e.g., Bachelor's in Computer Science"/>
-                                    @error('educational_background.degree')
-                                    <p class="invalid-feedback">{{ $message }}</p>
-                                    @enderror
-                                </div>
 
-                                <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="educational_background.field_of_study">Field
-                                        of Study</label>
-                                    <input type="text" id="educational_background.field_of_study"
-                                           name="educational_background[field_of_study]"
-                                           class="form-control form-control-lg @error('educational_background.field_of_study') is-invalid @enderror"
-                                           value="{{ old('educational_background.field_of_study') }}"
-                                           placeholder="e.g., Computer Science, Engineering"/>
-                                    @error('educational_background.field_of_study')
+                                    <datalist id="degree_programs">
+                                        <option value="Computer Science">
+                                        <option value="Software Engineering">
+                                        <option value="Information Technology">
+                                        <option value="Artificial Intelligence">
+                                        <option value="Data Science">
+                                        <option value="Cyber Security">
+                                        <option value="Electrical Engineering">
+                                        <option value="Mechanical Engineering">
+                                        <option value="Civil Engineering">
+                                        <option value="Chemical Engineering">
+                                        <option value="Biomedical Engineering">
+                                        <option value="Mechatronics Engineering">
+                                        <option value="Architecture">
+                                        <option value="Mathematics">
+                                        <option value="Statistics">
+                                        <option value="Physics">
+                                        <option value="Chemistry">
+                                        <option value="Biotechnology">
+                                        <option value="Microbiology">
+                                        <option value="Zoology">
+                                        <option value="Botany">
+                                        <option value="Environmental Science">
+                                        <option value="Geology">
+                                        <option value="Pharmacy (Pharm-D)">
+                                        <option value="Doctor of Medicine (MBBS)">
+                                        <option value="Doctor of Dental Surgery (BDS)">
+                                        <option value="Nursing">
+                                        <option value="Physiotherapy (DPT)">
+                                        <option value="Medical Laboratory Technology (MLT)">
+                                        <option value="Psychology">
+                                        <option value="Sociology">
+                                        <option value="Social Work">
+                                        <option value="Education (B.Ed/M.Ed)">
+                                        <option value="English Literature">
+                                        <option value="Urdu">
+                                        <option value="Islamic Studies">
+                                        <option value="Political Science">
+                                        <option value="International Relations">
+                                        <option value="Mass Communication">
+                                        <option value="Economics">
+                                        <option value="Commerce">
+                                        <option value="Accounting and Finance">
+                                        <option value="Banking and Finance">
+                                        <option value="Business Administration (BBA/MBA)">
+                                        <option value="Public Administration">
+                                        <option value="Supply Chain Management">
+                                        <option value="Marketing">
+                                        <option value="Human Resource Management">
+                                        <option value="Fine Arts">
+                                        <option value="Graphic Design">
+                                    </datalist>
+
+                                    @error('educational_background.degree')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                     @enderror
                                 </div>
