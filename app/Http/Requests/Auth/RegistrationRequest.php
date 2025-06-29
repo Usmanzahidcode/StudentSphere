@@ -22,7 +22,7 @@ class RegistrationRequest extends FormRequest {
             'personal_site' => ['nullable', 'url', 'max:255'],
             'educational_background.institution' => ['required', 'string', 'max:255'],
             'educational_background.degree' => ['required', 'string', 'max:255'],
-            'educational_background.field_of_study' => ['required', 'string', 'max:255'],
+            'educational_background.field_of_study' => ['nullable', 'string', 'max:255'],
             'educational_background.date_of_completion' => ['required', 'date', 'date_format:Y-m-d'],
         ];
     }

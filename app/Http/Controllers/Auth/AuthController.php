@@ -14,7 +14,6 @@ class AuthController extends Controller {
     }
 
     public function submitRegistrationForm(RegistrationRequest $request) {
-        // TODO: Implement random avatar system (Good to have feature not necessary (maybe for the chat system))
         $user = User::create($request->only([
             'email',
             'password',
